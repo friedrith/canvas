@@ -1,0 +1,252 @@
+<!-- <div class="ui top fixed menu">
+  <div class="item">
+    <img src="/images/logo.png">
+  </div>
+  <a class="item">Features</a>
+  <a class="item">Testimonials</a>
+  <a class="item">Sign-in</a>
+</div> -->
+
+
+<!-- <button class="ui button" ng-click="openDialog()">Customer segment</button> {{displayDialog}} -->
+
+<header class="header">
+    Value proposition canvas
+</header>
+
+<div class="menu-bottom">
+
+    <!-- <div class="menu-submenu"> -->
+        <!-- <div class="menu-submenu-content"> -->
+        <!-- </div> -->
+        <button class="ui button secondary icon large menu-button" ng-click="delete()">
+            <i class="ui icon trash"></i>
+        </button>
+    <!-- </div> -->
+
+</div>
+
+
+<div class="menu">
+
+    <div class="menu-submenu">
+        <div class="menu-submenu-content">
+            <button class="ui button secondary icon large menu-button" ng-click="zoomDefault()">
+                <i class="ui icon maximize"></i>
+            </button>
+            <button class="ui button secondary icon large menu-button" ng-click="zoomIn()">
+                <i class="ui icon plus"></i>
+            </button>
+            <button class="ui button secondary icon large menu-button" ng-click="zoomOut()">
+                <i class="ui icon minus"></i>
+            </button>
+        </div>
+        <button class="ui button secondary icon large menu-button">
+            <i class="ui icon search"></i>
+        </button>
+
+    </div>
+
+    <div class="menu-submenu">
+        <div class="menu-submenu-content">
+            <button class="ui button secondary icon large menu-button" ng-click="print('all')">
+                <i class="ui icon square"></i>
+                <i class="ui icon circle"></i>
+            </button>
+            <button class="ui button secondary icon large menu-button" ng-click="print('product')">
+                <i class="ui icon square"></i>
+            </button>
+            <button class="ui button secondary icon large menu-button" ng-click="print('customer')">
+                <i class="ui icon circle"></i>
+            </button>
+        </div>
+        <button class="ui button secondary icon large menu-button">
+            <i class="ui icon print"></i>
+        </button>
+    </div>
+
+    <div class="menu-submenu">
+        <div class="menu-submenu-content">
+        </div>
+        <button class="ui button secondary icon large menu-button" ng-click="download()">
+            <i class="ui icon save"></i>
+        </button>
+    </div>
+
+    <!-- <button class="ui button secondary icon large menu-button" ng-click="enlarge()">
+        <i class="ui icon maximize"></i>
+    </button> -->
+</div>
+
+<div class="value-proposition-canvas" style="zoom: {{zoom}}%">
+
+    <div class="value-proposition-container value-proposition-container-center" >
+        <h2>
+            <span class="canvas-name">Value Proposition</span>
+
+            <!-- <input class="customer-segment-name" type="text" placeholder="Customer segment" ng-model="segment.name"> -->
+        </h2>
+        <div class="canvas value-proposition" >
+            <div class="value-proposition-product">
+                <div class="value-proposition-product-content">
+                    <h3 class="canvas-title">Product & service<i class="cubes icon"></i></h3>
+                    <div class="canvas-text value-proposition-product-text" contenteditable ng-model="valueProposition.product" ng-class="{'canvas-text-empty':valueProposition.product.length == 0}">
+
+                    </div>
+                </div>
+                <div class="invisible"></div>
+            </div><div class="value-proposition-gain-creators-pain-relievers">
+                <div class="value-proposition-gain-creators">
+                    <div class="invisible invisible-top"></div>
+                    <div class="value-proposition-gain-creators-content">
+                        <h3 class="canvas-title">Gain Creator<i class="line chart icon"></i></h3>
+                        <div class="canvas-text value-proposition-gain-creators-text" contenteditable ng-model="valueProposition.gainCreators" ng-class="{'canvas-text-empty':valueProposition.gainCreators.length == 0}">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="value-proposition-pain-relievers">
+                    <div class="invisible invisible-top"></div>
+                    <div class="value-proposition-pain-relievers-content">
+                        <h3 class="canvas-title">Pain Relievers <i class="first aid icon"></i></h3>
+                        <div class="canvas-text value-proposition-pain-relievers-text" contenteditable ng-model="valueProposition.painRelievers" ng-class="{'canvas-text-empty':valueProposition.painRelievers.length == 0}">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="ui center aligned padded grid">
+                <div class="olive column">
+                  Olive
+                </div>
+                <div class="black column">
+                  Black
+                </div>
+          </div> -->
+        </div>
+    </div>
+
+
+    <div class="customer-segment-container customer-segment-container-center" >
+        <h2>
+            <span class="canvas-name">Customer Segment</span>
+
+            <!-- <input class="customer-segment-name" type="text" placeholder="Customer segment" ng-model="segment.name"> -->
+        </h2>
+        <div class="canvas customer-segment">
+            <div class="customer-segment-gains-pains">
+                <div class="customer-segment-gains">
+                    <div class="invisible invisible-bottom"></div>
+                    <div class="customer-segment-gains-content">
+                        <h3 class="canvas-title">Gains<i class="smile icon"></i></h3>
+                        <div class="canvas-text customer-segment-gains-text" contenteditable ng-model="segment.gains" ng-class="{'canvas-text-empty':segment.gains.length == 0}">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="customer-segment-pains">
+                    <div class="invisible invisible-top"></div>
+                    <div class="customer-segment-pains-content">
+                        <h3 class="canvas-title">Pains <i class="frown icon"></i></h3>
+                        <div class="canvas-text customer-segment-pains-text" contenteditable ng-model="segment.pains" ng-class="{'canvas-text-empty':segment.pains.length == 0}">
+
+                        </div>
+                    </div>
+                </div>
+            </div><div class="customer-segment-job">
+                <div class="customer-segment-job-content">
+                    <h3 class="canvas-title">Job<i class="list layout icon"></i></h3>
+                    <div class="canvas-text customer-segment-job-text" contenteditable ng-model="segment.job" ng-class="{'canvas-text-empty':segment.job.length == 0}">
+
+                    </div>
+                </div>
+                <div class="invisible"></div>
+            </div>
+            <!-- <div class="ui center aligned padded grid">
+                <div class="olive column">
+                  Olive
+                </div>
+                <div class="black column">
+                  Black
+                </div>
+          </div> -->
+        </div>
+    </div>
+</div>
+
+<div class="ui basic modal" modal="displayDeleting">
+  <div class="image content">
+    <div class="description">
+      <div class="canvas-deleting">
+
+          <p>
+              This canvas will be deleted in <br>{{deletingCount}}<br> seconds.
+          </p>
+
+          <div class="ui cancel red inverted button large" ng-click="cancelDeleting()">
+              <i class="ui icon close"></i>
+            Cancel
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ui modal" modal="displayDialog">
+  <i class="close icon"></i>
+  <div class="header">
+      <input class="header-input" type="text" placeholder="Customer segment" ng-model="segment.name">
+  </div>
+  <div class="content">
+    <!-- <div class="ui medium image">
+      <img src="/images/avatar/large/chris.jpg">
+    </div> -->
+    <div class="ui pointing secondary menu">
+      <a class="active item" data-tab="job">Job</a>
+      <a class="item" data-tab="gains">Gains</a>
+      <a class="item" data-tab="pains">Pains</a>
+    </div>
+    <div class="ui grid">
+      <div class="height wide column">
+          <!-- <div class="ui form"> -->
+            <!-- <div class="field"> -->
+              <!-- <label>Text</label> -->
+              <textarea class="textarea" placeholder="Customer job"></textarea>
+            <!-- </div> -->
+          <!-- </div> -->
+      </div>
+      <div class="height wide column">
+          <div class="help">
+              <p>
+                  Describe what a specific customer segment is trying to get done. It could be the tasks they are trying to perform and complete, the problems they are trying to solve, or the needs they are trying to satisfy.
+              </p>
+
+              <p>
+                  What functional jobs are you helping your customer get done? (e.g. perform or complete a specific task, solve a specific problem, …)
+              </p>
+
+              <p>
+                  What social jobs are you helping your customer get done? (e.g. trying to look good, gain power or status, …)
+              </p>
+              <p>
+                  What emotional jobs are you helping your customer get done? (e.g. esthetics, feel good, security, …)
+              </p>
+              <p>
+                  What basic needs are you helping your customer satisfy? (e.g. communication, sex, …)
+              </p>
+              <p>
+                  Besides trying to get a core job done, your customer performs ancillary jobs in different roles. Describe the jobs your customer is trying to get done as:
+                  <ul>
+                      <li>Buyer (e.g. trying to look good, gain power or status, …)</li>
+                      <li>Co-creator (e.g. esthetics, feel good, security, …)</li>
+                      <li>Transferrer (e.g. products and services that help customers dispose of a product, transfer it to others, or resell, …)</li>
+                  </ul>
+              </p>
+              <p>
+                  Rank each job according to its significance to your customer. Is it crucial or is it trivial? For each job indicate how often it occurs.
+              </p>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
