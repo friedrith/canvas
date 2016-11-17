@@ -103,7 +103,7 @@ gulp.task('webserver', function() {
 
 gulp.task('connect', function() {
   connect.server({
-    root: './src/public',
+    root: '.',
     livereload: true,
     port: process.env.PORT
   });
