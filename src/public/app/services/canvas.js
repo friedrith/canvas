@@ -33,6 +33,12 @@ app.factory('canvas', function ($rootScope, $timeout) {
             valueProposition.product = newValue.valueProposition.product;
             valueProposition.gainCreators = newValue.valueProposition.gainCreators;
             valueProposition.painRelievers = newValue.valueProposition.painRelievers;
+        },
+        serialize: function  () {
+            return JSON.stringify({
+                segment: segment,
+                valueProposition: valueProposition
+            });
         }
     };
 });

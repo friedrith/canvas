@@ -5,18 +5,11 @@ app.controller('ValuePropositionCanvasPrintCtrl', function($scope, $location, $t
 
     $scope.target = $routeParams.target;
 
-    $scope.segment = {
-        name: 'Customer segment name',
-        job: 'The job',
-        gains: '',
-        pains: ''
-    };
+    $scope.canvas = JSON.parse($routeParams.canvas);
 
-    $scope.valueProposition = {
-        product: '',
-        gainCreators: '',
-        painRelievers: ''
-    };
+    $scope.segment = $scope.canvas.segment;
+    $scope.valueProposition = $scope.canvas.valueProposition;
+
 
     $timeout(function () {
         window.print();

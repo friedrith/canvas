@@ -15,19 +15,43 @@
 </header>
 
 <div class="menu-bottom">
+    <div class="menu-submenu">
+        <div class="canvas-deleting-feedback" ng-show="deletingTimeout != null">
+            This canvas will be deleted in {{deletingCount}} seconds.
 
-    <!-- <div class="menu-submenu"> -->
-        <!-- <div class="menu-submenu-content"> -->
-        <!-- </div> -->
-        <button class="ui button secondary icon large menu-button" ng-click="delete()">
+
+        </div>
+        <button class="ui button secondary icon large menu-button" ng-click="cancelDeleting()" ng-show="deletingTimeout != null">
+            <i class="ui icon ban"></i>
+        </button>
+        <button class="ui button secondary icon large menu-button" ng-click="delete()" ng-show="deletingTimeout == null">
             <i class="ui icon trash"></i>
         </button>
-    <!-- </div> -->
+    </div>
 
 </div>
 
 
 <div class="menu">
+
+
+    <div class="menu-submenu">
+        <div class="menu-submenu-content">
+            <button class="ui button secondary icon large menu-button" ng-click="selectTarget('all')">
+                <i class="ui icon square"></i>
+                <i class="ui icon circle"></i>
+            </button>
+            <button class="ui button secondary icon large menu-button" ng-click="selectTarget('product')">
+                <i class="ui icon square"></i>
+            </button>
+            <button class="ui button secondary icon large menu-button" ng-click="selectTarget('customer')">
+                <i class="ui icon circle"></i>
+            </button>
+        </div>
+        <button class="ui button secondary icon large menu-button">
+            <i class="ui icon unhide"></i>
+        </button>
+    </div>
 
     <div class="menu-submenu">
         <div class="menu-submenu-content">
@@ -47,20 +71,9 @@
 
     </div>
 
+
     <div class="menu-submenu">
-        <div class="menu-submenu-content">
-            <button class="ui button secondary icon large menu-button" ng-click="print('all')">
-                <i class="ui icon square"></i>
-                <i class="ui icon circle"></i>
-            </button>
-            <button class="ui button secondary icon large menu-button" ng-click="print('product')">
-                <i class="ui icon square"></i>
-            </button>
-            <button class="ui button secondary icon large menu-button" ng-click="print('customer')">
-                <i class="ui icon circle"></i>
-            </button>
-        </div>
-        <button class="ui button secondary icon large menu-button">
+        <button class="ui button secondary icon large menu-button"  ng-click="print()">
             <i class="ui icon print"></i>
         </button>
     </div>
@@ -69,7 +82,7 @@
         <div class="menu-submenu-content">
         </div>
         <button class="ui button secondary icon large menu-button" ng-click="download()">
-            <i class="ui icon save"></i>
+            <i class="ui icon cloud download"></i>
         </button>
     </div>
 
@@ -80,7 +93,7 @@
 
 <div class="value-proposition-canvas" style="zoom: {{zoom}}%">
 
-    <div class="value-proposition-container value-proposition-container-center" >
+    <div class="value-proposition-container " ng-hide="target == 'customer'" ng-class="{'value-proposition-container-center':target == 'product'}">
         <h2>
             <span class="canvas-name">Value Proposition</span>
 
@@ -89,7 +102,7 @@
         <div class="canvas value-proposition" >
             <div class="value-proposition-product">
                 <div class="value-proposition-product-content">
-                    <h3 class="canvas-title">Product & service<i class="cubes icon"></i></h3>
+                    <h3 class="canvas-title">Product & service<i class="cube icon"></i></h3>
                     <div class="canvas-text value-proposition-product-text" contenteditable ng-model="valueProposition.product" ng-class="{'canvas-text-empty':valueProposition.product.length == 0}">
 
                     </div>
@@ -127,7 +140,7 @@
     </div>
 
 
-    <div class="customer-segment-container customer-segment-container-center" >
+    <div class="customer-segment-container" ng-hide="target == 'product'" ng-class="{' customer-segment-container-center': target == 'customer'}">
         <h2>
             <span class="canvas-name">Customer Segment</span>
 

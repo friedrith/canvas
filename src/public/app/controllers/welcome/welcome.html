@@ -2,6 +2,11 @@
 <header class="header">
     Value proposition canvas
 </header>
+
+<!-- <div class="github">
+    <i class="ui icon github"></i>
+</div> -->
+
 <div class="">
     <div class="welcome ui middle aligned center aligned grid">
       <div class="column">
@@ -15,10 +20,30 @@
             or
         </p>
         <p ng-show="showImport">
-            <div class="welcome-import" ng-click="import()">Import the save of an existing canvas</div>
+            <div class="welcome-import" ng-click="import()">Import an existing canvas</div>
         </p>
       </div>
     </div>
 
     <input type="file" fileread="file" class="welcome-file" name="file[]" />
 </div>
+
+
+<div class="ui basic modal" modal="dragging">
+  <div class="image content">
+    <div class="description">
+      <div class="welcome-import-drop">
+          <i class="ui icon cloud upload"></i>
+          <p>
+              Import a json file
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<footer class="footer">
+    Made with <i class="ui icon heart"></i> from Grenoble
+</footer>

@@ -30,21 +30,24 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
         }
     }
 
-    $scope.print = function (value) {
-        window.open('#/canvas/value-proposition/print/'+value, '_blank');
+    $scope.print = function () {
+        window.open('#/canvas/value-proposition/print/'+$scope.target+'/'+encodeURI(canvas.serialize()), '_blank');
     };
 
     $scope.download = function () {
-        var data = new Blob([JSON.stringify(canvas)], {type: 'application/json;charset=UTF-8'});
+        var data = new Blob([canvas.serialize()], {type: 'application/json;charset=UTF-8'});
         saveAs(data, 'value-proposition-canvas.json');
     };
 
     $scope.delete = function () {
         $scope.deletingCount = 4;
-        $scope.displayDeleting = true;
+        //$scope.displayDeleting = true;
         $scope.deletingTimeout = $interval(function () {
             $scope.deletingCount = $scope.deletingCount - 1;
             if ($scope.deletingCount == 0) {
+                $interval.cancel($scope.deletingTimeout);
+                $scope.deletingTimeout = null;
+                $scope.displayDeleting = false;
                 canvas.init();
                 $location.path('/welcome');
             }
@@ -53,10 +56,17 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
 
     $scope.cancelDeleting = function () {
         $interval.cancel($scope.deletingTimeout);
+        $scope.deletingTimeout = null;
         $scope.displayDeleting = false;
     }
 
     $scope.zoomDefault();
+
+    $scope.target = 'all';
+
+    $scope.selectTarget = function (value) {
+        $scope.target = value;
+    };
 
 
 });
