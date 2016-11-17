@@ -1,0 +1,332 @@
+.icon.zmdi {
+  font-family: 'Material-Design-Iconic-Font' !important;
+}
+@page {
+  size: A3 landscape;
+  margin: 30mm 45mm 30mm 45mm;
+}
+body,
+html {
+  display: block;
+  margin: 0px;
+  padding: 0px;
+}
+html {
+  box-sizing: content-box;
+  display: block;
+}
+body {
+  display: block;
+  box-sizing: border-box;
+  height: 100%;
+  background: url('../img/blueprint.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+.header {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-family: 'Lobster', cursive;
+  color: white;
+  font-size: 2em;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+}
+.textarea {
+  outline: none;
+  border: none;
+  resize: none;
+  width: 100%;
+  height: 100%;
+}
+.invisible {
+  height: 100%;
+  width: 1px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.invisible-bottom {
+  vertical-align: bottom;
+}
+.invisible-top {
+  vertical-align: top;
+}
+.value-proposition-canvas {
+  padding: 60px 20px 20px 20px;
+  text-align: center;
+}
+.menu {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 2em;
+}
+.menu-bottom {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 2em;
+}
+.menu-submenu {
+  display: block;
+  text-align: right;
+  margin-bottom: 20px!important;
+}
+.menu-submenu-content {
+  display: none;
+}
+.menu-submenu:hover .menu-submenu-content {
+  display: inline-block;
+}
+.canvas {
+  zoom: 90%;
+  overflow: hidden;
+  border: 4px black solid;
+  width: 800px;
+  height: 800px;
+  background: white;
+  margin: auto;
+}
+.canvas-name {
+  outline: none;
+  border: none;
+  background: black;
+  color: white;
+  padding: 2px 6px;
+  display: inline-block;
+  min-width: 50px;
+  font-size: 1.3em;
+  line-height: 1.2em;
+}
+.canvas-title {
+  background: black;
+  color: white;
+  padding: 2px 6px;
+  display: inline-block;
+  font-size: 1.6em;
+}
+.canvas-title .icon {
+  display: inline-block;
+  margin-left: 10px !important;
+}
+.canvas-text {
+  overflow: auto;
+  border: none;
+  outline: none;
+}
+.canvas-text-empty {
+  background: rgba(0, 0, 0, 0.2);
+  width: 20px;
+}
+.canvas-deleting {
+  text-align: center;
+  font-size: 2em!important;
+}
+.canvas-deleting-feedback {
+  display: inline-block;
+  font-size: 0.6em!important;
+  color: white;
+}
+.value-proposition-gain-creators-pain-relievers {
+  display: inline-block;
+  width: 55%;
+  height: 100%;
+}
+.value-proposition-product {
+  display: inline-block;
+  width: 45%;
+  height: 100%;
+  border-right: 2px solid black;
+  vertical-align: top;
+  text-align: left;
+}
+.value-proposition-product-content {
+  display: inline-block;
+  vertical-align: middle;
+  width: 90%;
+  padding-left: 20px;
+}
+.value-proposition-product-text {
+  max-height: 700px;
+}
+.value-proposition-pain-relievers {
+  width: 100%;
+  height: 50%;
+  border-top: 2px solid black;
+  text-align: left;
+}
+.value-proposition-pain-relievers-content {
+  display: inline-block;
+  vertical-align: top;
+  width: 75%;
+  padding-left: 20px;
+  padding-top: 20px;
+  text-align: left;
+}
+.value-proposition-pain-relievers-text {
+  max-height: 300px;
+}
+.value-proposition-gain-creators {
+  width: 100%;
+  height: 50%;
+  text-align: left;
+}
+.value-proposition-gain-creators-content {
+  display: inline-block;
+  vertical-align: top;
+  width: 75%;
+  padding-left: 20px;
+  padding-top: 20px;
+  text-align: left;
+}
+.value-proposition-gain-creators-text {
+  max-height: 300px;
+}
+.value-proposition-container {
+  display: inline-block;
+  margin-right: 20px;
+}
+.value-proposition-container-center {
+  margin: 0px;
+}
+.customer-segment {
+  border-radius: 999em;
+}
+.customer-segment-gains-pains {
+  display: inline-block;
+  width: 55%;
+  height: 100%;
+}
+.customer-segment-title {
+  background: black;
+  color: white;
+  padding: 2px 6px;
+  display: inline-block;
+  font-size: 1.6em;
+}
+.customer-segment-title .icon {
+  display: inline-block;
+  margin-left: 10px !important;
+}
+.customer-segment-job {
+  display: inline-block;
+  width: 45%;
+  height: 100%;
+  border-left: 2px solid black;
+  vertical-align: top;
+  text-align: left;
+}
+.customer-segment-job-content {
+  display: inline-block;
+  vertical-align: middle;
+  width: 80%;
+  padding-left: 20px;
+}
+.customer-segment-job-text {
+  max-height: 400px;
+}
+.customer-segment-pains {
+  width: 100%;
+  height: 50%;
+  border-top: 2px solid black;
+  text-align: right;
+}
+.customer-segment-pains-content {
+  display: inline-block;
+  vertical-align: top;
+  width: 75%;
+  padding-right: 20px;
+  padding-top: 20px;
+  text-align: left;
+  height: 270px;
+}
+.customer-segment-pains-text {
+  max-height: 200px;
+}
+.customer-segment-gains {
+  width: 100%;
+  height: 50%;
+  text-align: right;
+}
+.customer-segment-gains-content {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 75%;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+  height: 270px;
+}
+.customer-segment-gains-text {
+  max-height: 200px;
+}
+.customer-segment-container {
+  display: inline-block;
+  margin-left: 20px;
+}
+.customer-segment-container-center {
+  margin: 0px;
+}
+.welcome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: white;
+  font-size: 1.2em;
+}
+.welcome-title {
+  font-size: 1.7em;
+  font-family: 'Lobster', cursive;
+  font-weight: normal;
+  padding-bottom: 70px;
+}
+.welcome-import {
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+}
+.welcome-import:hover {
+  text-decoration: underline;
+}
+.welcome-import-drop {
+  text-align: center;
+  font-size: 4em;
+}
+.welcome-file {
+  display: block;
+  width: 0px;
+  height: 0px;
+}
+.help {
+  font-style: italic;
+  color: #008080;
+}
+.footer {
+  position: fixed;
+  bottom: 20px;
+  text-align: center;
+  left: 0;
+  right: 0;
+  color: white;
+  font-size: 1em;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+}
+.github {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 2.5em;
+  color: white;
+  z-index: 100;
+  cursor: pointer;
+}
