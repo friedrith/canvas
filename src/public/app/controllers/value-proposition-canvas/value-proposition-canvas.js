@@ -36,7 +36,7 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
 
     $scope.download = function () {
         var data = new Blob([canvas.serialize()], {type: 'application/json;charset=UTF-8'});
-        saveAs(data, 'value-proposition-canvas.json');
+        saveAs(data, 'value-proposition.canvas');
     };
 
     $scope.delete = function () {
