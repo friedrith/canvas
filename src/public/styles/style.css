@@ -277,14 +277,14 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 100;
   color: white;
   font-size: 1.2em;
 }
 .welcome-title {
   font-size: 1.7em;
-  font-family: 'Lobster', cursive;
   font-weight: normal;
-  padding-bottom: 70px;
+  padding-bottom: 50px;
 }
 .welcome-import {
   font-weight: bold;
@@ -321,12 +321,39 @@ body {
   -ms-user-select: none;
   -o-user-select: none;
 }
+/*
 .github {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5em;
+    color: white;
+    z-index: 100;
+    cursor: pointer;
+
+
+    &:hover {
+        // font-size: 2.1em;
+        // zoom: 110%;
+    }
+}*/
+.beta {
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
-  font-size: 2.5em;
   color: white;
-  z-index: 100;
+  z-index: 1000;
+  text-align: right;
+}
+.beta-title {
+  font-size: 1.3em;
+}
+.beta-link {
+  color: white;
+  font-weight: bold;
   cursor: pointer;
+}
+.beta-link:hover {
+  text-decoration: underline;
+  color: white;
 }
