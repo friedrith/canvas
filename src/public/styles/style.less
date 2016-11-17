@@ -380,15 +380,16 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 100;
 
     color: white;
     font-size: 1.2em;
 
     &-title {
         font-size: 1.7em;
-        font-family: 'Lobster', cursive;
+        // font-family: 'Lobster', cursive;
         font-weight: normal;
-        padding-bottom: 70px;
+        padding-bottom: 50px;
 
 
     }
@@ -434,7 +435,7 @@ body {
     -ms-user-select: none;
     -o-user-select: none;
 }
-
+/*
 .github {
     position: fixed;
     top: 20px;
@@ -448,5 +449,31 @@ body {
     &:hover {
         // font-size: 2.1em;
         // zoom: 110%;
+    }
+}*/
+
+.beta {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    // font-size: 2.5em;
+    color: white;
+    z-index: 1000;
+    //cursor: pointer;
+    text-align: right;
+
+    &-title {
+        font-size: 1.3em;
+    }
+
+    &-link {
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover  {
+            text-decoration: underline;
+            color: white;
+        }
+        // font-size: 2em;
     }
 }
