@@ -13,9 +13,17 @@ app.factory('canvas', function ($rootScope, $timeout) {
         painRelievers: ''
     };
 
+    var target = 'all';
+
     return {
         segment: segment,
         valueProposition: valueProposition,
+        getTarget: function () {
+            return target;
+        },
+        setTarget: function (newTarget) {
+            target = newTarget;
+        },
         init: function () {
             segment.name = '';
             segment.job = '';
@@ -24,6 +32,7 @@ app.factory('canvas', function ($rootScope, $timeout) {
             valueProposition.product = '';
             valueProposition.gainCreators = '';
             valueProposition.painRelievers = '';
+            target = '';
         },
         set: function (newValue) {
             segment.name = newValue.segment.name;
@@ -33,12 +42,14 @@ app.factory('canvas', function ($rootScope, $timeout) {
             valueProposition.product = newValue.valueProposition.product;
             valueProposition.gainCreators = newValue.valueProposition.gainCreators;
             valueProposition.painRelievers = newValue.valueProposition.painRelievers;
+            target = newValue.target;
         },
         serialize: function  () {
-            return JSON.stringify({
+            return {
                 segment: segment,
-                valueProposition: valueProposition
-            });
+                valueProposition: valueProposition,
+                target: target
+            };
         }
     };
 });

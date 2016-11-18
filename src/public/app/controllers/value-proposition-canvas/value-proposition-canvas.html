@@ -37,14 +37,14 @@
 
     <div class="menu-submenu">
         <div class="menu-submenu-content">
-            <button class="ui button secondary icon large menu-button" ng-click="selectTarget('all')">
+            <button class="ui button secondary icon large menu-button" ng-click="canvas.setTarget('all')">
                 <i class="ui icon square"></i>
                 <i class="ui icon circle"></i>
             </button>
-            <button class="ui button secondary icon large menu-button" ng-click="selectTarget('product')">
+            <button class="ui button secondary icon large menu-button" ng-click="canvas.setTarget('product')">
                 <i class="ui icon square"></i>
             </button>
-            <button class="ui button secondary icon large menu-button" ng-click="selectTarget('customer')">
+            <button class="ui button secondary icon large menu-button" ng-click="canvas.setTarget('customer')">
                 <i class="ui icon circle"></i>
             </button>
         </div>
@@ -93,7 +93,7 @@
 
 <div class="value-proposition-canvas" style="zoom: {{zoom}}%">
 
-    <div class="value-proposition-container " ng-hide="target == 'customer'" ng-class="{'value-proposition-container-center':target == 'product'}">
+    <div class="value-proposition-container " ng-hide="canvas.getTarget() == 'customer'" ng-class="{'value-proposition-container-center':canvas.getTarget() == 'product'}">
         <h2>
             <span class="canvas-name">Value Proposition</span>
 
@@ -140,7 +140,7 @@
     </div>
 
 
-    <div class="customer-segment-container" ng-hide="target == 'product'" ng-class="{' customer-segment-container-center': target == 'customer'}">
+    <div class="customer-segment-container" ng-hide="canvas.getTarget() == 'product'" ng-class="{' customer-segment-container-center': canvas.getTarget() == 'customer'}">
         <h2>
             <span class="canvas-name">Customer Segment</span>
 

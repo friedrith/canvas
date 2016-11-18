@@ -3,8 +3,6 @@ app.controller('ValuePropositionCanvasPrintCtrl', function($scope, $location, $t
 
     $scope.zoom = 85;
 
-    $scope.target = $routeParams.target;
-
     $scope.canvas = JSON.parse($routeParams.canvas);
 
     $scope.segment = $scope.canvas.segment;

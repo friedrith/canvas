@@ -8,7 +8,7 @@ app.config(function ($routeProvider) {
         templateUrl: 'app/controllers/value-proposition-canvas/value-proposition-canvas.html',
         controller: 'ValuePropositionCanvasCtrl'
     })
-    .when('/canvas/value-proposition/print/:target/:canvas', {
+    .when('/canvas/value-proposition/print/:canvas', {
         templateUrl: 'app/controllers/value-proposition-canvas-print/value-proposition-canvas-print.html',
         controller: 'ValuePropositionCanvasPrintCtrl'
     })

@@ -1,6 +1,7 @@
 'use strict';
 app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window, $interval, canvas) {
 
+    $scope.canvas = canvas;
     $scope.displayDialog = false;
     $scope.openDialog = function () {
         $scope.displayDialog = true;
@@ -31,11 +32,13 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
     }
 
     $scope.print = function () {
-        window.open('#/canvas/value-proposition/print/'+$scope.target+'/'+encodeURI(canvas.serialize()), '_blank');
+        window.open('#/canvas/value-proposition/print/'+encodeURI(JSON.stringify(canvas.serialize())), '_blank');
     };
 
     $scope.download = function () {
-        var data = new Blob([canvas.serialize()], {type: 'application/json;charset=UTF-8'});
+        var serialize = canvas.serialize();
+        serialize.zoom = $scope.zoom;
+        var data = new Blob([JSON.stringify(serialize)], {type: 'application/json;charset=UTF-8'});
         saveAs(data, 'value-proposition.canvas');
     };
 
@@ -61,12 +64,5 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
     }
 
     $scope.zoomDefault();
-
-    $scope.target = 'all';
-
-    $scope.selectTarget = function (value) {
-        $scope.target = value;
-    };
-
 
 });
