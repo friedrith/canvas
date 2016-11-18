@@ -91,8 +91,8 @@
     </button> -->
 </div>
 
-<div class="value-proposition-canvas" style="zoom: {{zoom}}%">
-
+<div class="value-proposition-canvas ui middle aligned center aligned grid" style="zoom: {{zoom}}%">
+  <div class="column">
     <div class="value-proposition-container " ng-hide="canvas.getTarget() == 'customer'" ng-class="{'value-proposition-container-center':canvas.getTarget() == 'product'}">
         <h2>
             <span class="canvas-name">Value Proposition</span>
@@ -185,81 +185,4 @@
           </div> -->
         </div>
     </div>
-</div>
-
-<div class="ui basic modal" modal="displayDeleting">
-  <div class="image content">
-    <div class="description">
-      <div class="canvas-deleting">
-
-          <p>
-              This canvas will be deleted in <br>{{deletingCount}}<br> seconds.
-          </p>
-
-          <div class="ui cancel red inverted button large" ng-click="cancelDeleting()">
-              <i class="ui icon close"></i>
-            Cancel
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="ui modal" modal="displayDialog">
-  <i class="close icon"></i>
-  <div class="header">
-      <input class="header-input" type="text" placeholder="Customer segment" ng-model="segment.name">
-  </div>
-  <div class="content">
-    <!-- <div class="ui medium image">
-      <img src="/images/avatar/large/chris.jpg">
-    </div> -->
-    <div class="ui pointing secondary menu">
-      <a class="active item" data-tab="job">Job</a>
-      <a class="item" data-tab="gains">Gains</a>
-      <a class="item" data-tab="pains">Pains</a>
-    </div>
-    <div class="ui grid">
-      <div class="height wide column">
-          <!-- <div class="ui form"> -->
-            <!-- <div class="field"> -->
-              <!-- <label>Text</label> -->
-              <textarea class="textarea" placeholder="Customer job"></textarea>
-            <!-- </div> -->
-          <!-- </div> -->
-      </div>
-      <div class="height wide column">
-          <div class="help">
-              <p>
-                  Describe what a specific customer segment is trying to get done. It could be the tasks they are trying to perform and complete, the problems they are trying to solve, or the needs they are trying to satisfy.
-              </p>
-
-              <p>
-                  What functional jobs are you helping your customer get done? (e.g. perform or complete a specific task, solve a specific problem, …)
-              </p>
-
-              <p>
-                  What social jobs are you helping your customer get done? (e.g. trying to look good, gain power or status, …)
-              </p>
-              <p>
-                  What emotional jobs are you helping your customer get done? (e.g. esthetics, feel good, security, …)
-              </p>
-              <p>
-                  What basic needs are you helping your customer satisfy? (e.g. communication, sex, …)
-              </p>
-              <p>
-                  Besides trying to get a core job done, your customer performs ancillary jobs in different roles. Describe the jobs your customer is trying to get done as:
-                  <ul>
-                      <li>Buyer (e.g. trying to look good, gain power or status, …)</li>
-                      <li>Co-creator (e.g. esthetics, feel good, security, …)</li>
-                      <li>Transferrer (e.g. products and services that help customers dispose of a product, transfer it to others, or resell, …)</li>
-                  </ul>
-              </p>
-              <p>
-                  Rank each job according to its significance to your customer. Is it crucial or is it trivial? For each job indicate how often it occurs.
-              </p>
-          </div>
-      </div>
-    </div>
-  </div>
 </div>

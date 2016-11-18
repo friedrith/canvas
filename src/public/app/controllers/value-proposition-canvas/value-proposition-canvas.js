@@ -2,10 +2,6 @@
 app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window, $interval, canvas) {
 
     $scope.canvas = canvas;
-    $scope.displayDialog = false;
-    $scope.openDialog = function () {
-        $scope.displayDialog = true;
-    };
 
     $scope.displayDeleting = false;
     $scope.deletingTimeout = null;
