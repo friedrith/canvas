@@ -30,6 +30,7 @@ body {
   font-family: 'Lobster', cursive;
   color: white;
   font-size: 2em;
+  z-index: 20;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
@@ -56,20 +57,27 @@ body {
   vertical-align: top;
 }
 .value-proposition-canvas {
-  padding: 60px 20px 20px 20px;
   text-align: center;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  left: 20px;
+  bottom: 20px;
+  z-index: 10;
 }
 .menu {
   position: fixed;
   top: 20px;
   right: 20px;
   font-size: 2em;
+  z-index: 20;
 }
 .menu-bottom {
   position: fixed;
   bottom: 20px;
   right: 20px;
   font-size: 2em;
+  z-index: 20;
 }
 .menu-submenu {
   display: block;
