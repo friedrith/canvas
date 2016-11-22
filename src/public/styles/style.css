@@ -27,6 +27,9 @@ body {
   background-size: cover;
   background-position: center center;
 }
+body.simple {
+  background: white;
+}
 .header {
   position: fixed;
   top: 20px;
@@ -40,6 +43,12 @@ body {
   -webkit-user-select: none;
   -ms-user-select: none;
   -o-user-select: none;
+}
+.header-in-menu {
+  font-family: 'Lobster', cursive;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
 }
 .textarea {
   outline: none;
@@ -69,29 +78,32 @@ body {
 .value-proposition-canvas {
   padding: 60px 20px 20px 20px;
 }
-.menu {
+.smenu {
   position: fixed;
   top: 20px;
   right: 20px;
   font-size: 2em;
   z-index: 20;
 }
-.menu-bottom {
+.smenu-top {
+  z-index: 10000;
+}
+.smenu-two {
   position: fixed;
   bottom: 20px;
   right: 20px;
   font-size: 2em;
   z-index: 20;
 }
-.menu-submenu {
+.smenu-submenu {
   display: block;
   text-align: right;
   margin-bottom: 20px!important;
 }
-.menu-submenu-content {
+.smenu-submenu-content {
   display: none;
 }
-.menu-submenu:hover .menu-submenu-content {
+.smenu-submenu:hover .smenu-submenu-content {
   display: inline-block;
 }
 .canvas {
@@ -129,6 +141,8 @@ body {
   overflow: auto;
   border: none;
   outline: none;
+  position: relative;
+  z-index: 10;
 }
 .canvas-text-empty {
   background: rgba(0, 0, 0, 0.2);
@@ -142,6 +156,16 @@ body {
   display: inline-block;
   font-size: 0.6em!important;
   color: white;
+}
+.canvas-prompt {
+  margin-left: -20px;
+}
+.canvas-prompt-container {
+  position: relative;
+  z-index: 5;
+  width: 0px;
+  height: 0px;
+  font-size: 1.2em;
 }
 .value-proposition-gain-creators-pain-relievers {
   display: inline-block;
@@ -199,11 +223,13 @@ body {
   max-height: 300px;
 }
 .value-proposition-container {
+  vertical-align: middle;
   display: inline-block;
-  margin-right: 20px;
+  margin: 20px;
 }
-.value-proposition-container-center {
-  margin: 0px;
+.value-proposition-container-top {
+  position: relative;
+  z-index: 10000;
 }
 .customer-segment {
   border-radius: 999em;
@@ -278,10 +304,12 @@ body {
 }
 .customer-segment-container {
   display: inline-block;
-  margin-left: 20px;
+  margin: 20px;
+  vertical-align: middle;
 }
-.customer-segment-container-center {
-  margin: 0px;
+.customer-segment-container-top {
+  position: relative;
+  z-index: 10000;
 }
 .welcome {
   position: fixed;
@@ -314,6 +342,21 @@ body {
   display: block;
   width: 0px;
   height: 0px;
+}
+.welcome-first-time {
+  text-align: right;
+}
+.welcome-first-time-content {
+  display: inline-block;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 1.3em;
+  line-height: 1em;
+  margin-bottom: 40px;
+  cursor: pointer;
+  transition: color 0.4s linear;
+}
+.welcome-first-time-content:hover {
+  color: black;
 }
 .help {
   font-style: italic;
@@ -368,4 +411,150 @@ body {
 .beta-link:hover {
   text-decoration: underline;
   color: white;
+}
+.tutorial-modal {
+  position: relative;
+  z-index: 30!important;
+}
+.tutorial-icon {
+  text-align: center;
+  font-size: 5em;
+}
+.tutorial-title {
+  font-weight: bold;
+  font-size: 1.9em;
+  text-align: center;
+}
+.tutorial-message {
+  text-align: center;
+  font-size: 1.5em;
+}
+.tutorial-skip {
+  font-size: 0.8em;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tutorial-skip:hover {
+  text-decoration: underline;
+}
+.tutorial-skip-again {
+  font-size: 0.6em;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tutorial-skip-again:hover {
+  text-decoration: underline;
+}
+.tutorial-help {
+  line-height: 1.3em;
+}
+.tutorial-help-left {
+  width: 700px;
+  margin-left: -750px;
+  text-align: right;
+}
+.tutorial-help-right {
+  width: 700px;
+  margin-left: 50px;
+  text-align: left;
+}
+.tutorial-help-title {
+  font-size: 1.2em;
+  padding-bottom: 20px;
+}
+.tutorial-help ul {
+  margin: 0;
+  padding: 0;
+}
+.tutorial-help li {
+  list-style-type: none;
+}
+.tutorial-help-container {
+  position: relative;
+  z-index: 10000;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 2em;
+  color: white;
+  width: 0px;
+}
+.tutorial-next {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.tutorial-menu {
+  position: fixed;
+  top: 100px;
+  right: 150px;
+  display: inline-block;
+  color: white;
+  font-size: 1.4em;
+  z-index: 11000;
+  width: 500px;
+  text-align: right;
+}
+.tutorial-menu-title {
+  font-size: 1.1em;
+  padding-bottom: 20px;
+}
+.tutorial-warning {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+}
+.introduction {
+  height: 70%!important;
+  min-height: 600px!important;
+}
+.introduction h2 {
+  font-size: 2.3em;
+  text-align: left;
+}
+.introduction h3 {
+  text-align: left;
+  color: #b3b5b9;
+}
+.part {
+  height: 70%!important;
+  min-height: 400px!important;
+}
+.part h2 {
+  font-size: 2em;
+  text-align: left;
+}
+.part h2.h2-white {
+  color: white;
+}
+.part h2.h2-center {
+  text-align: center;
+}
+.part p {
+  text-align: left;
+  color: #b3b5b9;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.part p.p-center {
+  text-align: center;
+}
+.part h3 {
+  text-align: left;
+  color: #b3b5b9;
+}
+.part-img {
+  width: 100%;
+}
+.part-img-center {
+  display: block;
+  width: 100px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.part-blueprint {
+  background: url('../img/blueprint.jpg');
+  background-size: 100%;
+  background-position: center center;
+}
+.part-grey {
+  background: rgba(0, 0, 0, 0.2);
 }
