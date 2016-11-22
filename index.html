@@ -1,14 +1,176 @@
 <html>
 <head>
-
+    <meta charset='utf-8' />
+    <link href="https://cdn.jsdelivr.net/semantic-ui/2.2.2/semantic.min.css" rel="stylesheet" >
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet" >
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Architects+Daughter" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
     <link href='src/public/styles/style.css' rel='stylesheet' />
+    <link rel="icon" type="image/png" href="src/public/img/icon_2.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Value proposition canvas</title>
 
-    <meta http-equiv="refresh" content="0; url=src/public/" />
+    <!-- <meta http-equiv="refresh" content="0; url=src/public/" /> -->
 
 </head>
 
-<body>
-    <p><a href="src/public">Redirect</a></p>
+<body class="simple ">
+    <!-- <p><a href="src/public">Redirect</a></p> -->
+    <div class="">
+        <div class="ui inverted vertical masthead center aligned segment">
+            <div class="ui container secondary">
+                <div class="ui menu secondary inverted">
+                  <div class="item">
+                      <h1 class="header-in-menu">Value Proposition Canvas</h1>
+                  </div>
+                  <div class="right menu">
+                      <a class="item" href="#canvas">Canvas</a>
+                      <a class="item" href="#product">Product</a>
+                      <a class="item" onclick="window.open('https://github.com/ThibaultFriedrich/value-proposition-canvas', '_blank')">Github</a>
+
+                      <div class="item"><a class="introduction-button ui button inverted" href="src/public">Let's go</a></div>
+
+                 </div>
+                </div>
+            </div>
+            <div class="ui middle aligned center aligned grid introduction">
+
+
+                <div class="column five wide">
+                    <img class="part-img" src="src/public/img/macbook_2.png">
+
+                </div>
+                <div class="column five wide">
+                    <h2>
+                        Build a product really adapted to your customers.
+                    </h2>
+                    <h3>
+                        The value proposition canvas is a great tool to make your product solves your customer's needs.
+                        We just make it easier to edit, easier to share, easier to print.
+                    </h3>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- <div class="ui container"> -->
+        <div class="ui middle aligned center aligned grid part" id="canvas">
+            <div class="column five wide">
+                <h2>
+                    No pain, no gain !
+                </h2>
+                <p>
+                    Before building a great product, you need to find a pain to resolve or a gain to improve. Otherwise whatever cool is what your offer, you won't sell it.
+                </p>
+                <p>
+                    Some smart guys have designed the value proposition canvas to synthetize your thoughs about your product/market fit.
+                </p>
+            </div>
+            <div class="column five wide">
+                <img class="part-img" src="src/public/img/canvas.jpg">
+            </div>
+        </div>
+    <!-- </div> -->
+
+    <!-- <div class="ui container"> -->
+        <div class="ui middle aligned center aligned grid part part-blueprint" id="product">
+            <div class="column five wide">
+                <img class="part-img" src="src/public/img/macbook_2.png">
+            </div>
+            <div class="column five wide">
+                <h2 class="h2-white">
+                    Why our product?
+                </h2>
+                <p>
+                    Most of websites proposing value proposition canvas only give access to a picture or if you are lucky to a pdf.
+                    The edition is horrible. The sharing of the editable version is also a nightmare.
+                </p>
+                <p>
+                    With our digital solution, everything is easy. Edition is easy. Export is easy. Printing is easy.
+                    You don't have anymore bad reasons to don't use the value proposition canvas.
+                </p>
+            </div>
+        </div>
+    <!-- </div> -->
+
+    <div class="ui middle aligned center aligned grid part">
+        <div class="column five wide">
+            <img class="part-img-center" src="src/public/img/present.png">
+
+            <h2 class="h2-center">
+                Open Beta
+            </h2>
+            <p class="p-center">
+                Our solution is open to everybody and totally free (and will stay free forever). No account to create, no email to give.
+            </p>
+
+            <a class="ui button blue large" href="src/public">Start My First Canvas</a>
+        </div>
+    </div>
+
+    <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui middle aligned center aligned grid">
+
+
+            <div class="column five wide">
+                Made with <i class="ui icon heart"></i> from Grenoble
+            </div>
+            <div class="column five wide">
+                <p>Version <span id="version"></span></p>
+                <p>MIT License</p>
+
+                <p>
+                    Issues, Improvements ? Contacts us on <a class="beta-link" onclick="window.open('https://github.com/ThibaultFriedrich/value-proposition-canvas', '_blank')">github</a>
+                <p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.js"></script>
+
+    <script>
+        var oReq = new XMLHttpRequest();
+        oReq.onload = function (e) {
+            console.log('onload', e);
+            var version = JSON.parse(this.responseText).version;
+            console.log(version);
+
+            document.getElementById('version').innerHTML = version;
+        };
+        oReq.open("get", "package.json", true);
+        oReq.send();
+
+        // document.querySelector('#a_canvas').onclick = function () {
+        //     console.log('smooth');
+        //     document.querySelector('#canvas').scrollIntoView({
+        //       behavior: 'smooth'
+        //     });
+        // };
+
+
+        $(function() {
+          $('a[href*="#"]:not([href="#"])').click(function() {
+            if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+              var target = $(this.hash);
+              target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+              if (target.length) {
+                $('html, body').animate({
+                  scrollTop: target.offset().top
+                }, 1000);
+                return false;
+              }
+            }
+          });
+        });
+
+
+    </script>
+
+
 
 
 

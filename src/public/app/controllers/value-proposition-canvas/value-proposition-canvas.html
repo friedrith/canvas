@@ -14,74 +14,83 @@
     Value proposition canvas
 </header>
 
-<div class="menu-bottom">
-    <div class="menu-submenu">
+<div class="smenu-two">
+    <div class="smenu-submenu">
         <div class="canvas-deleting-feedback" ng-show="deletingTimeout != null">
             This canvas will be deleted in {{deletingCount}} seconds.
-
-
         </div>
-        <button class="ui button secondary icon large menu-button" ng-click="cancelDeleting()" ng-show="deletingTimeout != null">
+        <button class="ui button secondary icon large smenu-button" ng-click="cancelDeleting()" ng-show="deletingTimeout != null">
             <i class="ui icon ban"></i>
         </button>
-        <button class="ui button secondary icon large menu-button" ng-click="delete()" ng-show="deletingTimeout == null">
+        <button class="ui button secondary icon large smenu-button" ng-click="delete()" ng-show="deletingTimeout == null">
             <i class="ui icon trash"></i>
         </button>
     </div>
 
 </div>
 
+<div class="tutorial-menu" ng-show="showTutorial && stepTutorial == 'menu'">
+    <div class="tutorial-menu-title">And the last but not the least! <i class="ui icon pointing right"></i></div> A menu to select what to show, zoom, print or export.
 
-<div class="menu">
+    <div class="tutorial-warning">
+        <i class="ui icon warning sign"></i> Remember to export your canvas before quit because there is no online save.
+    </div>
+    <div class="tutorial-next">
+        <button class="ui icon button white large" ng-click="finishTutorial()">
+            Ok let's go to work
+        </button>
+    </div>
+</div>
 
+<div class="smenu" ng-class="{'smenu-top': showTutorial && stepTutorial == 'menu'}">
+    <div class="smenu-submenu">
 
-    <div class="menu-submenu">
-        <div class="menu-submenu-content">
-            <button class="ui button secondary icon large menu-button" ng-click="canvas.setTarget('all')">
+        <div class="smenu-submenu-content">
+            <button class="ui button secondary icon large smenu-button" ng-click="canvas.setTarget('all')">
                 <i class="ui icon square"></i>
                 <i class="ui icon circle"></i>
             </button>
-            <button class="ui button secondary icon large menu-button" ng-click="canvas.setTarget('product')">
+            <button class="ui button secondary icon large smenu-button" ng-click="canvas.setTarget('product')">
                 <i class="ui icon square"></i>
             </button>
-            <button class="ui button secondary icon large menu-button" ng-click="canvas.setTarget('customer')">
+            <button class="ui button secondary icon large smenu-button" ng-click="canvas.setTarget('customer')">
                 <i class="ui icon circle"></i>
             </button>
         </div>
-        <button class="ui button secondary icon large menu-button">
+        <button class="ui button secondary icon large smenu-button">
             <i class="ui icon unhide"></i>
         </button>
     </div>
 
-    <div class="menu-submenu">
-        <div class="menu-submenu-content">
-            <button class="ui button secondary icon large menu-button" ng-click="zoomDefault()">
+    <div class="smenu-submenu">
+        <div class="smenu-submenu-content">
+            <button class="ui button secondary icon large smenu-button" ng-click="zoomDefault()">
                 <i class="ui icon maximize"></i>
             </button>
-            <button class="ui button secondary icon large menu-button" ng-click="zoomIn()">
+            <button class="ui button secondary icon large smenu-button" ng-click="zoomIn()">
                 <i class="ui icon plus"></i>
             </button>
-            <button class="ui button secondary icon large menu-button" ng-click="zoomOut()">
+            <button class="ui button secondary icon large smenu-button" ng-click="zoomOut()">
                 <i class="ui icon minus"></i>
             </button>
         </div>
-        <button class="ui button secondary icon large menu-button">
+        <button class="ui button secondary icon large smenu-button">
             <i class="ui icon search"></i>
         </button>
 
     </div>
 
 
-    <div class="menu-submenu">
-        <button class="ui button secondary icon large menu-button"  ng-click="print()">
+    <div class="smenu-submenu">
+        <button class="ui button secondary icon large smenu-button"  ng-click="print()">
             <i class="ui icon print"></i>
         </button>
     </div>
 
-    <div class="menu-submenu">
-        <div class="menu-submenu-content">
+    <div class="smenu-submenu">
+        <div class="smenu-submenu-content">
         </div>
-        <button class="ui button secondary icon large menu-button" ng-click="download()">
+        <button class="ui button secondary icon large smenu-button" ng-click="download()">
             <i class="ui icon cloud download"></i>
         </button>
     </div>
@@ -92,98 +101,166 @@
 </div>
 
 <div class="main-container ui middle aligned center aligned grid" >
-  <div class="column" style="zoom: {{zoom}}%">
-      <div class="value-proposition-canvas">
-    <div class="value-proposition-container " ng-hide="canvas.getTarget() == 'customer'">
-        <h2>
-            <span class="canvas-name">Value Proposition</span>
+    <div class="column" style="zoom: {{zoom}}%">
+        <div class="value-proposition-canvas">
+            <div class="value-proposition-container " ng-hide="canvas.getTarget() == 'customer'" ng-class="{'value-proposition-container-top': showTutorial && stepTutorial == 'value-proposition'}">
+                <h2>
+                    <span class="canvas-name">Value Proposition</span>
 
-            <!-- <input class="customer-segment-name" type="text" placeholder="Customer segment" ng-model="segment.name"> -->
-        </h2>
-        <div class="canvas value-proposition" >
-            <div class="value-proposition-product">
-                <div class="value-proposition-product-content">
-                    <h3 class="canvas-title">Product & service<i class="cube icon"></i></h3>
-                    <div class="canvas-text value-proposition-product-text" contenteditable ng-model="valueProposition.product" ng-class="{'canvas-text-empty':valueProposition.product.length == 0}">
+                    <!-- <input class="customer-segment-name" type="text" placeholder="Customer segment" ng-model="segment.name"> -->
+                </h2>
+                <div class="canvas value-proposition" >
+                    <div class="value-proposition-product">
+                        <div class="value-proposition-product-content">
+                            <h3 class="canvas-title">Product & service<i class="cube icon"></i></h3>
+                            <div class="canvas-prompt-container" ng-show="valueProposition.product.length == 0"><div class="canvas-prompt"><i class="ui icon paragraph"></i></div></div>
+                            <div class="canvas-text value-proposition-product-text" contenteditable ng-model="valueProposition.product" ng-class="{'canvas-text-empty':valueProposition.product.length == 0}">
 
-                    </div>
-                </div>
-                <div class="invisible"></div>
-            </div><div class="value-proposition-gain-creators-pain-relievers">
-                <div class="value-proposition-gain-creators">
-                    <div class="invisible invisible-top"></div>
-                    <div class="value-proposition-gain-creators-content">
-                        <h3 class="canvas-title">Gain Creator<i class="line chart icon"></i></h3>
-                        <div class="canvas-text value-proposition-gain-creators-text" contenteditable ng-model="valueProposition.gainCreators" ng-class="{'canvas-text-empty':valueProposition.gainCreators.length == 0}">
+                            </div>
+                        </div>
+                        <div class="invisible"></div>
+                    </div><div class="value-proposition-gain-creators-pain-relievers">
+                        <div class="value-proposition-gain-creators">
+                            <div class="invisible invisible-top"></div>
+                            <div class="value-proposition-gain-creators-content">
+                                <h3 class="canvas-title">Gain Creator<i class="line chart icon"></i></h3>
+                                <div class="canvas-prompt-container" ng-show="valueProposition.gainCreators.length == 0"><div class="canvas-prompt"><i class="ui icon paragraph"></i></div></div>
+                                <div class="canvas-text value-proposition-gain-creators-text" contenteditable ng-model="valueProposition.gainCreators" ng-class="{'canvas-text-empty':valueProposition.gainCreators.length == 0}">
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="value-proposition-pain-relievers">
+                            <div class="invisible invisible-top"></div>
+                            <div class="value-proposition-pain-relievers-content">
+                                <h3 class="canvas-title">Pain Relievers <i class="first aid icon"></i></h3>
+                                <div class="canvas-prompt-container" ng-show="valueProposition.painRelievers.length == 0"><div class="canvas-prompt"><i class="ui icon paragraph"></i></div></div>
+                                <div class="canvas-text value-proposition-pain-relievers-text" contenteditable ng-model="valueProposition.painRelievers" ng-class="{'canvas-text-empty':valueProposition.painRelievers.length == 0}">
+
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="value-proposition-pain-relievers">
-                    <div class="invisible invisible-top"></div>
-                    <div class="value-proposition-pain-relievers-content">
-                        <h3 class="canvas-title">Pain Relievers <i class="first aid icon"></i></h3>
-                        <div class="canvas-text value-proposition-pain-relievers-text" contenteditable ng-model="valueProposition.painRelievers" ng-class="{'canvas-text-empty':valueProposition.painRelievers.length == 0}">
-
+                    <!-- <div class="ui center aligned padded grid">
+                        <div class="olive column">
+                          Olive
                         </div>
-                    </div>
+                        <div class="black column">
+                          Black
+                        </div>
+                  </div> -->
                 </div>
             </div>
-            <!-- <div class="ui center aligned padded grid">
-                <div class="olive column">
-                  Olive
-                </div>
-                <div class="black column">
-                  Black
-                </div>
-          </div> -->
-        </div>
-    </div>
-
-
-    <div class="customer-segment-container" ng-hide="canvas.getTarget() == 'product'">
-        <h2>
-            <span class="canvas-name">Customer Segment</span>
-
-            <!-- <input class="customer-segment-name" type="text" placeholder="Customer segment" ng-model="segment.name"> -->
-        </h2>
-        <div class="canvas customer-segment">
-            <div class="customer-segment-gains-pains">
-                <div class="customer-segment-gains">
-                    <div class="invisible invisible-bottom"></div>
-                    <div class="customer-segment-gains-content">
-                        <h3 class="canvas-title">Gains<i class="smile icon"></i></h3>
-                        <div class="canvas-text customer-segment-gains-text" contenteditable ng-model="segment.gains" ng-class="{'canvas-text-empty':segment.gains.length == 0}">
-
+            <div class="tutorial-help-container" ng-show="showTutorial && stepTutorial == 'customer-segment'">
+                <div class="tutorial-help tutorial-help-left">
+                    <div class="tutorial-help-title">On the right side <i class="ui icon pointing right"></i></div>
+                    Gather information about your target :
+                        <ul>
+                            <li>What your customer does?</li>
+                            <li>What are his gains?</li>
+                            <li>What are his pains?</li>
+                        </ul>
+                        <div class="tutorial-next">
+                            <button class="ui icon button white huge" ng-click="nextStepTutorial()">
+                                Ok
+                            </button>
                         </div>
-                    </div>
+                        <p>
+                            <span class="tutorial-skip-again" ng-click="closeTutorial()">Skip it</span>
+                        </p>
                 </div>
-                <div class="customer-segment-pains">
-                    <div class="invisible invisible-top"></div>
-                    <div class="customer-segment-pains-content">
-                        <h3 class="canvas-title">Pains <i class="frown icon"></i></h3>
-                        <div class="canvas-text customer-segment-pains-text" contenteditable ng-model="segment.pains" ng-class="{'canvas-text-empty':segment.pains.length == 0}">
-
-                        </div>
-                    </div>
-                </div>
-            </div><div class="customer-segment-job">
-                <div class="customer-segment-job-content">
-                    <h3 class="canvas-title">Job<i class="list layout icon"></i></h3>
-                    <div class="canvas-text customer-segment-job-text" contenteditable ng-model="segment.job" ng-class="{'canvas-text-empty':segment.job.length == 0}">
-
-                    </div>
-                </div>
-                <div class="invisible"></div>
             </div>
-            <!-- <div class="ui center aligned padded grid">
-                <div class="olive column">
-                  Olive
+            <div class="tutorial-help-container" ng-show="showTutorial && stepTutorial == 'value-proposition'">
+                <div class="tutorial-help tutorial-help-right">
+                    <div class="tutorial-help-title"> <i class="ui icon pointing left"></i>On the left side</div>
+                    Find how to solve customer's pains, improve customer's gains and finally define a product or a service.
+                        <div class="tutorial-next">
+                            <button class="ui icon button white huge" ng-click="nextStepTutorial()">
+                                Ok
+                            </button>
+                        </div>
+                        <p>
+                            <span class="tutorial-skip-again" ng-click="closeTutorial()">Skip it</span>
+                        </p>
                 </div>
-                <div class="black column">
-                  Black
+            </div>
+            <div class="customer-segment-container" ng-hide="canvas.getTarget() == 'product'" ng-class="{'customer-segment-container-top': showTutorial && stepTutorial == 'customer-segment'}">
+                <h2>
+                    <span class="canvas-name">Customer Segment</span>
+
+                    <!-- <input class="customer-segment-name" type="text" placeholder="Customer segment" ng-model="segment.name"> -->
+                </h2>
+                <div class="canvas customer-segment">
+                    <div class="customer-segment-gains-pains">
+                        <div class="customer-segment-gains">
+                            <div class="invisible invisible-bottom"></div>
+                            <div class="customer-segment-gains-content">
+                                <h3 class="canvas-title">Gains<i class="smile icon"></i></h3>
+                                <div class="canvas-prompt-container" ng-show="segment.gains.length == 0"><div class="canvas-prompt"><i class="ui icon paragraph"></i></div></div>
+                                <div class="canvas-text customer-segment-gains-text" contenteditable ng-model="segment.gains" ng-class="{'canvas-text-empty':segment.gains.length == 0}">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="customer-segment-pains">
+                            <div class="invisible invisible-top"></div>
+                            <div class="customer-segment-pains-content">
+                                <h3 class="canvas-title">Pains <i class="frown icon"></i></h3>
+                                <div class="canvas-prompt-container" ng-show="segment.pains.length == 0"><div class="canvas-prompt"><i class="ui icon paragraph"></i></div></div>
+                                <div class="canvas-text customer-segment-pains-text" contenteditable ng-model="segment.pains" ng-class="{'canvas-text-empty':segment.pains.length == 0}">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class="customer-segment-job">
+                        <div class="customer-segment-job-content">
+                            <h3 class="canvas-title">Job<i class="list layout icon"></i></h3>
+                            <div class="canvas-prompt-container" ng-show="segment.job.length == 0"><div class="canvas-prompt"><i class="ui icon paragraph"></i></div></div>
+                            <div class="canvas-text customer-segment-job-text" contenteditable ng-model="segment.job" ng-class="{'canvas-text-empty':segment.job.length == 0}">
+
+                            </div>
+                        </div>
+                        <div class="invisible"></div>
+                    </div>
+                    <!-- <div class="ui center aligned padded grid">
+                        <div class="olive column">
+                          Olive
+                        </div>
+                        <div class="black column">
+                          Black
+                        </div>
+                  </div> -->
                 </div>
-          </div> -->
+            </div>
         </div>
     </div>
+</div>
+
+<div class="tutorial-modal ui modal basic small" modal="showTutorial">
+
+  <div class="content" ng-show="stepTutorial == 'begin'">
+
+    <div class="description">
+        <div class="tutorial-icon">
+            <i class="ui icon hand peace animated tada"></i>
+        </div>
+        <div class="tutorial-title">
+            Welcome on your first canvas!
+        </div>
+      <p class="tutorial-message">
+          We have prepared a tutorial for you. Do you want to follow it?
+
+      </p>
+
+      <p class="tutorial-message">
+          <button class="ui icon button white large" ng-click="nextStepTutorial()">
+            Yep, sure
+          </button>
+      </p>
+      <p class="tutorial-message">
+          <span class="tutorial-skip" ng-click="closeTutorial()">Skip it</span>
+      </p>
+    </div>
+  </div>
+
 </div>

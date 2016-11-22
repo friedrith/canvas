@@ -6,6 +6,7 @@ app
         },
         link: function (scope, element, attrs) {
             angular.element(element).modal({
+                closable: false,
                 onHidden: function () {
                     $rootScope.$apply(function  () {
                         scope.modal = false;

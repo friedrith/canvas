@@ -7,7 +7,7 @@
 @green: #21BA45;
 @yellow         : #FFD700;
 @teal           : #008080;
-@blue           : #2185D0;
+@blue           : #215da3;
 @violet         : #EE82EE;
 @purple         : #B413EC;
 @pink           : #FF1493;
@@ -57,6 +57,10 @@ body {
     background: url('../img/blueprint.jpg');
     background-size: cover;
     background-position: center center;
+
+    &.simple {
+        background: white;
+    }
     // font-size: 14px;
 }
 
@@ -75,6 +79,13 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
+
+    &-in-menu {
+        font-family: 'Lobster', cursive;
+        font-weight: normal;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 .header-input {
@@ -87,6 +98,11 @@ body {
     resize: none;
     width: 100%;
     height: 100%;
+}
+
+.modal {
+    // position: relative;
+    // z-index: 30!important;
 }
 
 .invisible {
@@ -116,15 +132,19 @@ body {
 
 }
 
-.menu {
+.smenu {
     position: fixed;
     top: 20px;
     right: 20px;
     font-size: 2em;
     z-index: 20;
 
+    &-top {
+        z-index: 10000;
+    }
 
-    &-bottom {
+
+    &-two {
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -194,6 +214,8 @@ body {
         overflow: auto;
         border: none;
         outline: none;
+        position: relative;
+        z-index: 10;
 
         &-empty {
             background: @grey;
@@ -209,6 +231,19 @@ body {
             display: inline-block;
             font-size: 0.6em!important;
             color: white;
+        }
+    }
+
+    &-prompt {
+
+        margin-left: -20px;
+
+        &-container {
+            position: relative;
+            z-index: 5;
+            width: 0px;
+            height: 0px;
+            font-size: 1.2em;
         }
     }
 }
@@ -284,10 +319,14 @@ body {
 
     &-container {
 
-
-
+        vertical-align: middle;
         display: inline-block;
         margin: 20px;
+
+        &-top {
+            position: relative;
+            z-index: 10000;
+        }
     }
 }
 
@@ -378,6 +417,12 @@ body {
     &-container {
         display: inline-block;
         margin: 20px;
+        vertical-align: middle;
+
+        &-top {
+            position: relative;
+            z-index: 10000;
+        }
     }
 
 
@@ -421,6 +466,26 @@ body {
         display: block;
         width: 0px;
         height: 0px;
+    }
+
+    &-first-time {
+        text-align: right;
+        &-content {
+            display: inline-block;
+            font-family: 'Architects Daughter', cursive;
+            // font-family: Lobster, cursive;
+            font-size: 1.3em;
+            line-height: 1em;
+            margin-bottom: 40px;
+            cursor: pointer;
+            transition: color 0.4s linear;
+
+            &:hover {
+                color: black;
+            }
+        }
+
+
     }
 }
 
@@ -484,5 +549,221 @@ body {
             color: white;
         }
         // font-size: 2em;
+    }
+}
+
+.tutorial {
+
+    &-modal {
+        position: relative;
+        z-index: 30!important;
+    }
+    &-icon {
+        text-align: center;
+        font-size: 5em;
+    }
+
+    &-title {
+        font-weight: bold;
+        font-size: 1.9em;
+        text-align: center;
+
+    }
+
+    &-message {
+        text-align: center;
+        font-size: 1.5em;
+    }
+
+    &-skip {
+        font-size: 0.8em;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &-again {
+            font-size: 0.6em;
+            font-weight: bold;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &-help {
+
+        line-height: 1.3em;
+        &-left {
+            width: 700px;
+            margin-left: -750px;
+            text-align: right;
+        }
+
+        &-right {
+            width: 700px;
+            margin-left: 50px;
+            text-align: left;
+
+        }
+
+
+
+        &-title {
+            font-size: 1.2em;
+            padding-bottom: 20px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        &-container {
+            position: relative;
+            z-index: 10000;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 2em;
+            color: white;
+            width: 0px;
+        }
+    }
+
+    &-next {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    &-menu {
+        position: fixed;
+        top: 100px;
+        right: 150px;
+        display: inline-block;
+        color: white;
+        font-size: 1.4em;
+        // position: relative;
+        z-index: 11000;
+        width: 500px;
+        text-align: right;
+
+        &-title {
+            font-size: 1.1em;
+            padding-bottom: 20px;
+        }
+    }
+
+    &-warning {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-weight: bold;
+    }
+}
+
+.introduction {
+    height: 70%!important;
+    min-height: 600px!important;
+
+    // background: black;
+    // color: white;
+
+
+    h2 {
+        font-size: 2.3em;
+        text-align: left;
+        // color: @blue;
+    }
+
+    h3 {
+        text-align: left;
+        // color: @blue;
+        color: @darkGrey;
+    }
+
+    &-button {
+
+        &:before {
+            // border-color: solid @blue!important;
+        }
+        &:hover {
+            // background-color: @blue!important;
+        }
+    }
+
+
+
+
+
+}
+
+.part {
+
+    height: 70%!important;
+    min-height: 400px!important;
+
+    h2 {
+        font-size: 2em;
+        text-align: left;
+
+        &.h2-white {
+            color: white;
+        }
+
+        &.h2-center {
+            text-align: center;
+        }
+    }
+
+
+
+    p {
+        text-align: left;
+        // color: @blue;
+        color: @darkGrey;
+        font-size: 1.2em;
+        font-weight: bold;
+
+        &.p-center {
+            text-align: center;
+        }
+    }
+
+
+
+    h3 {
+        text-align: left;
+        // color: @blue;
+        // font-weight: normal;
+        color: @darkGrey;
+    }
+
+    &-img {
+        width: 100%;
+
+        &-center {
+            display: block;
+            width: 100px;
+            margin: auto;
+            margin-bottom: 20px;
+
+        }
+    }
+
+    &-blueprint {
+        background: url('../img/blueprint.jpg');
+        background-size: 100%;
+        background-position: center center;
+    }
+
+    &-grey {
+        background: @grey;
     }
 }

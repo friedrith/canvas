@@ -1,5 +1,5 @@
 'use strict';
-app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window, $interval, canvas) {
+app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window, $interval, $cookies, canvas) {
 
     $scope.canvas = canvas;
 
@@ -60,5 +60,35 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
     }
 
     $scope.zoomDefault();
+
+    var cookies = $cookies.getAll();
+
+    $scope.firstTime = true;
+
+    if (cookies.notFirstTime) {
+        $scope.firstTime = false;
+    }
+
+    $scope.showTutorial = $scope.firstTime && $scope.canvas.isEmpty();
+
+    $scope.closeTutorial = function () {
+        $scope.showTutorial = false;
+    };
+
+    $scope.stepTutorial = 'begin'; // 'begin';
+
+    $scope.nextStepTutorial = function () {
+        if ($scope.stepTutorial == 'begin') {
+            $scope.stepTutorial = 'customer-segment';
+        } else if ($scope.stepTutorial == 'customer-segment') {
+            $scope.stepTutorial = 'value-proposition';
+        } else if ($scope.stepTutorial == 'value-proposition') {
+            $scope.stepTutorial = 'menu';
+        }
+    };
+
+    $scope.finishTutorial = function () {
+        $scope.showTutorial = false;
+    };
 
 });
