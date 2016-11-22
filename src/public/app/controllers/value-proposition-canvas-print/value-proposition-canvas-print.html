@@ -2,7 +2,7 @@
   <div class="column" style="zoom: {{zoom}}%">
       <div class="value-proposition-canvas">
 
-    <div class="value-proposition-container" ng-hide="canvas.target == 'customer'" ng-class="{'value-proposition-container-center':canvas.getTarget() == 'product'}">
+    <div class="value-proposition-container" ng-hide="canvas.target == 'customer'">
         <h2>
             <span class="canvas-name">Value Proposition</span>
 
@@ -49,7 +49,7 @@
     </div>
 
 
-    <div class="customer-segment-container" ng-hide="canvas.target == 'product'" ng-class="{' customer-segment-container-center': canvas.getTarget() == 'customer'}">
+    <div class="customer-segment-container" ng-hide="canvas.target == 'product'">
         <h2>
             <span class="canvas-name">Customer Segment</span>
 

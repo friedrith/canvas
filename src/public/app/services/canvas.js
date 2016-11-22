@@ -15,11 +15,16 @@ app.factory('canvas', function ($rootScope, $timeout) {
 
     var target = 'all';
 
+    var empty = true;
+
     return {
         segment: segment,
         valueProposition: valueProposition,
         getTarget: function () {
             return target;
+        },
+        isEmpty: function () {
+            return empty;
         },
         setTarget: function (newTarget) {
             target = newTarget;
@@ -33,6 +38,7 @@ app.factory('canvas', function ($rootScope, $timeout) {
             valueProposition.gainCreators = '';
             valueProposition.painRelievers = '';
             target = '';
+            empty = true;
         },
         set: function (newValue) {
             segment.name = newValue.segment.name;
@@ -43,6 +49,7 @@ app.factory('canvas', function ($rootScope, $timeout) {
             valueProposition.gainCreators = newValue.valueProposition.gainCreators;
             valueProposition.painRelievers = newValue.valueProposition.painRelievers;
             target = newValue.target;
+            empty = false;
         },
         serialize: function  () {
             return {

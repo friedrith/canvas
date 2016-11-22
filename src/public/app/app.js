@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('value-proposition-canvas', ['ngRoute']);
+var app = angular.module('value-proposition-canvas', ['ngRoute', 'ngCookies']);
 
 app.config(function ($routeProvider) {
     $routeProvider

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window, $interval, canvas) {
+app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window, $interval, $cookies, canvas) {
 
     $scope.canvas = canvas;
 
@@ -60,5 +60,41 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
     }
 
     $scope.zoomDefault();
+
+    // $cookies.remove('notFirstTime');
+
+    console.log($cookies.get('notFirstTime'));
+
+    $scope.firstTime = true;
+
+    if ($cookies.get('notFirstTime')) {
+        $scope.firstTime = false;
+    }
+
+    $scope.showTutorial = $scope.firstTime && $scope.canvas.isEmpty();
+
+    $scope.closeTutorial = function () {
+        $scope.showTutorial = false;
+        $cookies.put('notFirstTime', true, {'expires': new Date(new Date().setFullYear(new Date().getFullYear() + 1))}  );
+        console.log($cookies.get('notFirstTime'));
+
+    };
+
+    $scope.stepTutorial = 'begin'; // 'begin';
+
+    $scope.nextStepTutorial = function () {
+        if ($scope.stepTutorial == 'begin') {
+            $scope.stepTutorial = 'customer-segment';
+        } else if ($scope.stepTutorial == 'customer-segment') {
+            $scope.stepTutorial = 'value-proposition';
+        } else if ($scope.stepTutorial == 'value-proposition') {
+            $scope.stepTutorial = 'menu';
+        }
+    };
+
+    $scope.finishTutorial = function () {
+        $scope.showTutorial = false;
+        $cookies.put('notFirstTime', true, {'expires': new Date(new Date().setFullYear(new Date().getFullYear() + 1))}  );
+    };
 
 });
