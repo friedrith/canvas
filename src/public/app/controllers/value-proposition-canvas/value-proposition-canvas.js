@@ -61,11 +61,13 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
 
     $scope.zoomDefault();
 
-    var cookies = $cookies.getAll();
+    // $cookies.remove('notFirstTime');
+
+    console.log($cookies.get('notFirstTime'));
 
     $scope.firstTime = true;
 
-    if (cookies.notFirstTime) {
+    if ($cookies.get('notFirstTime')) {
         $scope.firstTime = false;
     }
 
@@ -73,6 +75,9 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
 
     $scope.closeTutorial = function () {
         $scope.showTutorial = false;
+        $cookies.put('notFirstTime', true, {'expires': new Date(new Date().setFullYear(new Date().getFullYear() + 1))}  );
+        console.log($cookies.get('notFirstTime'));
+
     };
 
     $scope.stepTutorial = 'begin'; // 'begin';
@@ -89,6 +94,7 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
 
     $scope.finishTutorial = function () {
         $scope.showTutorial = false;
+        $cookies.put('notFirstTime', true, {'expires': new Date(new Date().setFullYear(new Date().getFullYear() + 1))}  );
     };
 
 });
