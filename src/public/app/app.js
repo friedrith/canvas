@@ -16,6 +16,10 @@ app.config(function ($routeProvider) {
         templateUrl: 'app/controllers/welcome/welcome.html',
         controller: 'WelcomeCtrl'
     })
+    .when('/sign', {
+        templateUrl: 'app/controllers/sign/sign.html',
+        controller: 'SignCtrl'
+    })
     .otherwise({
         redirectTo: '/welcome'
     });
