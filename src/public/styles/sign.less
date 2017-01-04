@@ -1,0 +1,45 @@
+.sign {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+
+    color: white;
+    font-size: 1.2em;
+
+
+    &-feedback {
+        min-height: 33px;
+        padding: 3px 5px 10px 5px;
+        font-size: 0.8em;
+        font-style: italic;
+        text-align: left;
+
+        &-error {
+            color: @red;
+        }
+
+        &-good {
+            color: @green;
+        }
+    }
+
+    &-more {
+        display: block;
+        text-align: center;
+        padding-top: 20px;
+
+        &-button {
+            font-weight: bold;
+            cursor: pointer;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+
+    }
+}

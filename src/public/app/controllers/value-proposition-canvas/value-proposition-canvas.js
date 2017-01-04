@@ -1,42 +1,72 @@
-'use strict';
-app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window, $interval, $cookies, canvas) {
+    'use strict';
+app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window, $interval, $cookies, $routeParams, user) {
 
-    $scope.canvas = canvas;
+    // $scope.canvas = canvas;
+
+    $scope.notFound = false;
 
     $scope.displayDeleting = false;
     $scope.deletingTimeout = null;
     $scope.deletingCount = 5;
 
-    $scope.zoom = 100;
+    $scope.user = user;
 
-    $scope.segment = canvas.segment;
+    $scope.canvas = null;
 
-    $scope.valueProposition = canvas.valueProposition;
+    user.getValuePropositionCanvas($routeParams.link, function (data) {
+        // $scope.$apply (function () {
+        //
+        // });
+        if (data) {
+            console.log(data.name);
+            $scope.canvas = data;
+
+            $scope.$watch(function () {
+                return $scope.canvas;
+            }, function () {
+                $scope.canvas.save();
+            }, true);
+        } else {
+            $scope.$apply(function () {
+                $scope.notFound = true;
+            });
+        }
+    });
+
+    // $scope.canvas = user.getValuePropositionCanvas($routeParams.link);
+
+    // $scope.segment = canvas.segment;
+
+    // $scope.valueProposition = canvas.valueProposition;
 
     $scope.zoomDefault = function () {
-        $scope.zoom = 80;
+        if ($scope.canvas) {
+            $scope.canvas.zoom = 70;
+        }
     };
 
     $scope.zoomIn = function () {
-        $scope.zoom = $scope.zoom + 10;
-    }
-
-    $scope.zoomOut = function () {
-        if ($scope.zoom >= 10) {
-            $scope.zoom = $scope.zoom - 10;
+        if ($scope.canvas) {
+            $scope.canvas.zoom = $scope.canvas.zoom + 10;
         }
     }
 
-    $scope.print = function () {
-        window.open('#/canvas/value-proposition/print/'+encodeURI(JSON.stringify(canvas.serialize())), '_blank');
-    };
+    $scope.zoomOut = function () {
+        if ($scope.canvas && $scope.canvas.zoom >= 10) {
+            $scope.canvas.zoom = $scope.canvas.zoom - 10;
+        }
+    }
 
-    $scope.download = function () {
-        var serialize = canvas.serialize();
-        serialize.zoom = $scope.zoom;
-        var data = new Blob([JSON.stringify(serialize)], {type: 'application/json;charset=UTF-8'});
-        saveAs(data, 'value-proposition.canvas');
-    };
+    // $scope.print = function () {
+    //     window.open('#/canvas/value-proposition/print/'+encodeURI(JSON.stringify(canvas.serialize())), '_blank');
+    // };
+
+    // $scope.download = function () {
+    //     var serialize = canvas.serialize();
+    //     serialize.zoom = $scope.zoom;
+    //     var data = new Blob([JSON.stringify(serialize)], {type: 'application/json;charset=UTF-8'});
+    //     saveAs(data, 'value-proposition.canvas');
+    // };
 
     $scope.delete = function () {
         $scope.deletingCount = 4;
@@ -47,8 +77,14 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
                 $interval.cancel($scope.deletingTimeout);
                 $scope.deletingTimeout = null;
                 $scope.displayDeleting = false;
-                canvas.init();
-                $location.path('/welcome');
+                $scope.canvas.delete(function () {
+                    if ($scope.user.allCanvas().length == 0) {
+                        $location.path('/gallery');
+                    } else {
+                        $location.path('/list');
+                    }
+                });
+                // canvas.init();
             }
         }, 1000);
     };
@@ -59,7 +95,7 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
         $scope.displayDeleting = false;
     }
 
-    $scope.zoomDefault();
+    // $scope.zoomDefault();
 
     // $cookies.remove('notFirstTime');
 
@@ -71,7 +107,7 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
         $scope.firstTime = false;
     }
 
-    $scope.showTutorial = $scope.firstTime && $scope.canvas.isEmpty();
+    $scope.showTutorial = false ; // $scope.firstTime && $scope.canvas.isEmpty();
 
     $scope.closeTutorial = function () {
         $scope.showTutorial = false;
@@ -95,6 +131,14 @@ app.controller('ValuePropositionCanvasCtrl', function($scope, $location, $window
     $scope.finishTutorial = function () {
         $scope.showTutorial = false;
         $cookies.put('notFirstTime', true, {'expires': new Date(new Date().setFullYear(new Date().getFullYear() + 1))}  );
+    };
+
+    $scope.keyPress = function (event) {
+         if (event.keyCode == 13) {
+             event.preventDefault();
+             event.stopPropagation();
+             return false;
+         }
     };
 
 });

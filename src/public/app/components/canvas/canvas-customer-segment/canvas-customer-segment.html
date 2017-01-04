@@ -1,0 +1,35 @@
+<div class="canvas-container canvas-customer-segment-container" ng-class="{'customer-segment-container-top': showTutorial && stepTutorial == 'customer-segment'}">
+    <h2 class="canvas-title">Customer Segment</h2>
+    <div class="canvas-customer-segment">
+        <div class="canvas-customer-segment-gains-pains">
+            <div class="canvas-customer-segment-gains canvas-editable" ng-click="showGainsEditor = true">
+                <div class="invisible invisible-bottom"></div>
+                <div class="canvas-customer-segment-gains-content">
+                    <h3 class="canvas-subtitle">Gains<i class="smile icon"></i></h3>
+                    <div class="canvas-text canvas-customer-segment-gains-text" btf-markdown="(canvas.gains | mdNewLine)">
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-customer-segment-pains canvas-editable" ng-click="showPainsEditor = true">
+                <div class="invisible invisible-top"></div>
+                <div class="canvas-customer-segment-pains-content">
+                    <h3 class="canvas-subtitle">Pains <i class="frown icon"></i></h3>
+                    <div class="canvas-text canvas-customer-segment-pains-text" btf-markdown="(canvas.pains | mdNewLine)" >
+                    </div>
+                </div>
+            </div>
+        </div><div class="canvas-customer-segment-job canvas-editable" ng-click="showJobEditor = true">
+            <div class="canvas-customer-segment-job-content">
+                <h3 class="canvas-subtitle">Job<i class="list layout icon"></i></h3>
+                <div class="canvas-text canvas-customer-segment-job-text" btf-markdown="(canvas.job | mdNewLine)" >
+                </div>
+            </div>
+            <div class="invisible"></div>
+        </div>
+    </div>
+
+
+    <modal-editor show="showPainsEditor" title="Pains" icon="frown" model="canvas.pains"></modal-editor>
+    <modal-editor show="showGainsEditor" title="Gains" icon="smile" model="canvas.gains"></modal-editor>
+    <modal-editor show="showJobEditor" title="Job" icon="list layout" model="canvas.job"></modal-editor>
+</div>

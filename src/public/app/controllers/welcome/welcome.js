@@ -1,13 +1,14 @@
 'use strict';
-app.controller('WelcomeCtrl', function($scope, $location, $timeout, canvas) {
+app.controller('WelcomeCtrl', function($scope, $location, $timeout) {
 
-    $scope.showImport = window.File && window.FileReader && window.FileList && window.Blob;
+    // $scope.showImport = window.File && window.FileReader && window.FileList && window.Blob;
 
     $scope.newValuePropositionCanvas = function () {
-        canvas.init();
+        // canvas.init();
         $location.path('/canvas/value-proposition');
     };
 
+/*
     $scope.import = function () {
         $('.welcome-file').click();
     };
@@ -33,7 +34,7 @@ app.controller('WelcomeCtrl', function($scope, $location, $timeout, canvas) {
         $scope.importFile(newValue);
 
     });
-
+*/
 
 
     $scope.count = 0;

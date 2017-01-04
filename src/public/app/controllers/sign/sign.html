@@ -1,26 +1,30 @@
 
-<header class="header">
+<!-- <header class="header">
     Canvas
-</header>
+</header> -->
 
-<div class="beta">
-    <div class="beta-title">Open Beta</div>
-    <div class="beta-github">Issues, Improvements ? Contacts us on <a class="beta-link" onclick="window.open('https://github.com/ThibaultFriedrich/value-proposition-canvas', '_blank')">github</a></div>
-    <!--  -->
-</div>
+<beta></beta>
 
-<div class="">
-    <div class="welcome ui middle aligned center aligned grid">
+    <div class="sign ui middle aligned center aligned grid">
       <div class="column four wide">
         <div class="ui segment inverted">
             <h2>Sign in</h2>
+            <div class="ui form big">
+              <div class="field">
+                <input type="email" placeholder="Email">
+              </div>
+              <div class="field">
+                <input type="password" placeholder="Password">
+              </div>
+              <!-- <div class="sign-feedback"></div> -->
+              <div class="field">
+                  <button class="ui button blue big block">Sign in</button>
+              </div>
+            </div>
+            <div class="sign-more">No account? <span class="sign-more-button" ng-click="signUp()">Sign up</span></div>
         </div>
       </div>
     </div>
 
-    <input type="file" fileread="file" class="welcome-file" name="file[]" />
-</div>
 
-<footer class="footer">
-    Made with <i class="ui icon heart"></i> from Grenoble
-</footer>
+<div footer></div>

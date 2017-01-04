@@ -1,0 +1,31 @@
+
+
+
+.ui.mini.modal {
+    @media (min-width: 992px)  {
+        width: 380px;
+        margin: 0 0 0 -190px;
+    }
+
+    @media (min-width: 1200px) {
+        width: 420px;
+        margin: 0 0 0 -210px;
+    }
+}
+
+.modal {
+    &-textarea {
+        padding: 20px;
+        height: 300px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 1.1em;
+        line-height: 1.4em;
+    }
+
+    &-help {
+        text-align: right;
+        color: @darkGrey;
+        padding: 5px 20px;
+    }
+}

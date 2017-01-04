@@ -1,5 +1,9 @@
 'use strict';
-app.controller('SignCtrl', function($scope, $location, $timeout, canvas) {
+app.controller('SignCtrl', function($scope, $location, $timeout, user) {
+
+    $scope.signUp = function ()  {
+        $location.path('/sign-up');
+    };
 
     $scope.showImport = window.File && window.FileReader && window.FileList && window.Blob;
 

@@ -1,0 +1,15 @@
+<div menu-button></div>
+
+
+<div class="gallery">
+    <h1 class="gallery-title">My canvas</h1>
+    <div class="ui three column grid">
+      <div class="column" ng-repeat="canvas in user.allCanvas()">
+        <div class="ui segment inverted gallery-canvas gallery-canvas-editable" ng-click="openCanvas(canvas)">
+            <h2 class="gallery-canvas-title">{{canvas.name}}</h2>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div footer></div>

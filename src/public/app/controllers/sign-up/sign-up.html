@@ -1,0 +1,54 @@
+
+<!-- <header class="header">
+    Canvas
+</header> -->
+
+<beta></beta>
+
+    <div class="sign ui middle aligned center aligned grid">
+      <div class="column four wide">
+        <div class="ui segment inverted">
+            <h2>Sign up</h2>
+            <form class="ui form big" name="form" ng-submit="submitForm(form.$valid)" novalidate>
+                <!-- <div class="field">
+
+                    <input type="text" name="login" placeholder="Login" required ng-required="true">
+                    <div class="sign-feedback">
+
+                    </div>
+                </div> -->
+
+              <div class="field">
+
+                <input type="email" name="email" placeholder="Email" ng-model="email" required ng-required="true" ng-change="emailUpdated(email)" ng-blur="checkEmail(form.email.$valid, email)">
+                <div class="sign-feedback">
+                    <span class="sign-feedback-error" ng-if="form.email.$error.email">
+                        It must be an correct email address.
+                    </span>
+                    <span class="sign-feedback-error" ng-if="emailState == 'used' && !form.email.$error.email">
+                        This email is already used.
+                    </span>
+
+                    <span class="sign-feedback-good" ng-if="emailState == 'free' && form.email.$valid">
+                        This email is perfect!
+                    </span>
+                </div>
+              </div>
+
+              <div class="field">
+                <input type="password" name="password" placeholder="Password" ng-model="password" required ng-required="true">
+                <password-validator password="password" strength="strength"></password-validator>
+              </div>
+              <!-- <div class="sign-feedback">
+              </div> -->
+              <div class="field">
+                  <button class="ui button blue big block" type="submit" ng-disabled="form.$invalid || strength < 2 || emailState != 'free'">Start the adventure</button>
+              </div>
+          </form>
+            <div class="sign-more">Already have an account? <span class="sign-more-button" ng-click="signIn()">Sign in</span></div>
+        </div>
+      </div>
+    </div>
+
+
+<div footer></div>

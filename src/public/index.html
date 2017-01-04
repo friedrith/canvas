@@ -19,11 +19,34 @@
 		<title>Value proposition canvas</title>
 	</head>
 
-	<body  ng-view ng-app="value-proposition-canvas">
+	<body ng-app="value-proposition-canvas">
+        <div class="ui sidebar inverted vertical menu icon labeled" sidebar>
+          <h1 class="menu-header">Canvas</h1>
+          <a class="item" ng-click="gotoGallery()">
+              <i class="plus icon"></i> Add Canvas
+          </a>
+          <a class="item" ng-click="gotoList()" ng-if="user.allCanvas().length > 0">
+              <i class="list icon"></i> My Canvas
+          </a>
+          <!-- <a class="item">
+              <i class="settings icon"></i> Settings
+          </a>
+
+          <a class="item">
+              <i class="info icon"></i> About
+          </a> -->
+        </div>
+        <div class="pusher">
+            <div class="main" ng-view>
+
+
+            </div>
+        </div>
+
 	</body>
 
 
-	<!-- <script src="/socket.io/socket.io.js"></script> -->
+	<script src="/socket.io/socket.io.js"></script>
 
 
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
@@ -37,25 +60,58 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-cookies.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-sanitize.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-validation/1.4.2/angular-validation.min.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-fittext/4.2.1/ng-FitText.min.js"></script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.5.1/showdown.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-showdown/1.1.0/ng-showdown.min.js"></script> -->
+
+
 
     <!-- <script src="https://cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script> -->
 
 
     <!-- <script src="/libs/range/range.js"></script> -->
 
+    <script src="libs/showdown.js"></script>
 
     <script src="app/app.js"></script>
     <script src="app/controllers/sign/sign.js"></script>
+	<script src="app/controllers/sign-up/sign-up.js"></script>
+    <script src="app/controllers/gallery/gallery.js"></script>
     <script src="app/controllers/welcome/welcome.js"></script>
+    <script src="app/controllers/list/list.js"></script>
     <script src="app/controllers/value-proposition-canvas/value-proposition-canvas.js"></script>
     <script src="app/controllers/value-proposition-canvas-print/value-proposition-canvas-print.js"></script>
+	<script src="app/controllers/value-proposition-canvas-new/value-proposition-canvas-new.js"></script>
+
     <script src="app/directives/modal.js"></script>
     <script src="app/directives/contenteditable.js"></script>
     <script src="app/directives/fileread.js"></script>
+    <script src="app/directives/sidebar.js"></script>
+    <script src="app/directives/markdown.js"></script>
+	<script src="app/directives/natural-email.js"></script>
 
+    <script src="app/components/main.js"></script>
+	<script src="app/components/beta/beta.js"></script>
+    <script src="app/components/footer/footer.js"></script>
+    <script src="app/components/menu-button/menu-button.js"></script>
+    <script src="app/components/modal-editor/modal-editor.js"></script>
+	<script src="app/components/password-validator/password-validator.js"></script>
+
+    <script src="app/components/canvas/canvas-customer-segment/canvas-customer-segment.js"></script>
+    <script src="app/components/canvas/canvas-value-proposition/canvas-value-proposition.js"></script>
+
+    <script src="app/filters/md-new-line.js"></script>
+
+    <script src="app/services/socket.js"></script>
     <script src="app/services/canvas.js"></script>
+    <script src="app/services/user.js"></script>
 
     <!--<script src="/app/directives/slider.js"></script>
     <script src="/app/directives/dropdown.js"></script> -->

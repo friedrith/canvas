@@ -1,17 +1,34 @@
 'use strict';
-app.controller('ValuePropositionCanvasPrintCtrl', function($scope, $location, $timeout, $routeParams) {
+app.controller('ValuePropositionCanvasPrintCtrl', function($scope, $location, $timeout, $routeParams, user) {
 
-    $scope.zoom = 85;
+    $scope.notFound = false;
 
-    $scope.canvas = JSON.parse($routeParams.canvas);
+    $scope.displayDeleting = false;
+    $scope.deletingTimeout = null;
+    $scope.deletingCount = 5;
 
-    $scope.segment = $scope.canvas.segment;
-    $scope.valueProposition = $scope.canvas.valueProposition;
+    $scope.user = user;
 
+    $scope.canvas = null;
 
-    $timeout(function () {
-        window.print();
-    }, 2000);
+    user.getValuePropositionCanvas($routeParams.link, function (data) {
+        // $scope.$apply (function () {
+        //
+        // });
+        if (data) {
+            console.log(data.name);
+            $scope.canvas = data;
 
+            $scope.$watch(function () {
+                return $scope.canvas;
+            }, function () {
+                $scope.canvas.save();
+            }, true);
+        } else {
+            $scope.$apply(function () {
+                $scope.notFound = true;
+            });
+        }
+    });
 
 });

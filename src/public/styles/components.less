@@ -1,0 +1,99 @@
+
+.footer  {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    color: white;
+    font-size: 1em;
+
+    &.black {
+        color: black;
+    }
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+}
+
+.beta {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    // font-size: 2.5em;
+    color: white;
+    z-index: 1000;
+    //cursor: pointer;
+    text-align: right;
+
+    &-title {
+        font-size: 1.3em;
+    }
+
+    &-link {
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        &:hover  {
+            text-decoration: underline;
+            color: white;
+        }
+        // font-size: 2em;
+    }
+}
+
+.password-validator {
+    padding: 3px 5px 0px 5px;
+    height: 34px;
+
+    &-level {
+        display: inline-block;
+        width: 20%;
+        height: 4px;
+
+        &-inner {
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 0px 2px;
+            height: 4px;
+            border-radius: 1px;
+
+            &.good {
+                background-color: @green;
+            }
+
+            &.medium {
+                background-color: @blue;
+            }
+
+            &.wrong {
+                background-color: @red;
+            }
+        }
+        &-list {
+            font-size: 0px;
+            height: 4px;
+        }
+    }
+
+    &-label {
+        font-size: 0.8em;
+        font-style: italic;
+        text-align: left;
+        padding-top: 7px;
+
+        &-good {
+            color: @green;
+        }
+
+        &-medium {
+            color: @blue;
+        }
+
+        &-wrong {
+            color: @red;
+        }
+    }
+}

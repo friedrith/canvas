@@ -1,16 +1,22 @@
 @maxWidth: 600px;
 
 // @blue: #2185D0;
-@grey: rgba(0, 0, 0, 0.2);
-@darkGrey: #b3b5b9;
-
+//@grey: rgba(0, 0, 0, 0.2);
+/*
 @green: #21BA45;
 @yellow         : #FFD700;
-@teal           : #008080;
 @blue           : #215da3;
 @violet         : #EE82EE;
 @purple         : #B413EC;
-@pink           : #FF1493;
+@pink           : #FF1493;*/
+
+@red           : #DB2828;
+@green         : #21BA45;
+@teal           : #008080;
+@blue: #2185D0;
+
+@grey: rgba(34,36,38,.15);
+@darkGrey: #b3b5b9;
 
 .icon.zmdi {
     font-family: 'Material-Design-Iconic-Font'!important;
@@ -23,18 +29,18 @@
 
 body, html {
     // font-size: 0;
-    position: absolute;
-    display: block;
-    min-height: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    // position: absolute;
+    // display: block;
+    // min-height: 100%;
+    // height: 100%;
+    // margin: 0px;
+    // padding: 0px;
+    // box-sizing: border-box;
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // bottom: 0;
+    // left: 0;
 }
 
 
@@ -49,21 +55,119 @@ html {
 
 body {
     // line-height: 0;
-    display: block;
-    box-sizing: border-box;
-    height: 100%;
-    // font-size: 12px;
-
-    background: url('../img/blueprint.jpg');
-    background-size: cover;
-    background-position: center center;
-
-    &.simple {
-        background: white;
-    }
+    // display: block;
+    // box-sizing: border-box;
+    // height: 100%;
+    // // font-size: 12px;
+    //
+    // background: url('../img/blueprint.jpg');
+    // background-size: cover;
+    // background-position: center center;
+    //
+    // &.simple {
+    //     background: white;
+    // }
     // font-size: 14px;
 }
 
+
+.pusher {
+    position: relative!important;
+}
+
+.menu {
+    &-header {
+        font-family: 'Lobster', cursive;
+        color: white;
+        font-size: 2em;
+        padding: 10px 20px;
+        font-weight: normal;
+    }
+
+    &-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        display: inline-block;
+        // font-size: 2em;
+        cursor: pointer;
+        z-index: 100;
+
+        // color: white;
+
+        &-sign {
+            color: white;
+            font-size: 1.3em;
+        }
+    }
+
+    &-separator {
+        color: white;
+        padding: 50px 10px 10px 10px;
+        font-weight: bold;
+    }
+
+    &-container {
+        padding: 0px 20px;
+    }
+
+    &-avatar {
+        // padding: 20px;
+        color: white;
+
+        &-icon {
+            border-radius: .25rem;
+            width: 45px;
+            display: inline-block;
+            vertical-align: bottom;
+        }
+
+        &-pseudo {
+            font-weight: bold;
+            font-size: 1.1em;
+            display: inline-block;
+            vertical-align: bottom;
+            margin-left: 10px;
+        }
+    }
+}
+
+.button {
+
+    &.block {
+        display: block!important;
+        width: 100%!important;
+    }
+}
+
+.main {
+    display: block;
+    box-sizing: border-box;
+    height: 100%;
+    background: url('../img/blueprint.jpg');
+    background-size: cover;
+    background-position: center center;
+    padding: 0;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    &-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 10;
+
+        overflow: auto;
+    }
+}
+
+/*
 .header {
     position: fixed;
     top: 20px;
@@ -86,7 +190,8 @@ body {
         margin: 0;
         padding: 0;
     }
-}
+}*/
+
 
 .header-input {
 
@@ -98,6 +203,7 @@ body {
     resize: none;
     width: 100%;
     height: 100%;
+    overflow: auto;
 }
 
 .modal {
@@ -120,313 +226,15 @@ body {
     }
 }
 
-.main-container {
-    text-align: center;
-    min-height: 100%;
-    z-index: 10;
-    overflow: auto;
-}
-
-.value-proposition-canvas {
-    padding: 60px 20px 20px 20px;
-
-}
-
-.smenu {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 2em;
-    z-index: 20;
-
-    &-top {
-        z-index: 10000;
-    }
-
-
-    &-two {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        font-size: 2em;
-        z-index: 20;
-
-    }
-
-    &-button {
-        // display: block!important;
-    }
-
-    &-submenu {
-        display: block;
-        text-align: right;
-        margin-bottom: 20px!important;
-
-        &-content {
-            display: none;
-        }
-
-        &:hover &-content {
-            display: inline-block;
-        }
-    }
-}
-
-.canvas {
-
-    zoom: 90%;
-    overflow: hidden;
-    border: 4px black solid;
-    width: 800px;
-    height: 800px;
-    background: white;
-    margin: auto;
-
-    &-name {
-        outline: none;
-        border: none;
-        display: inline-block;
-        background: black;
-        color: white;
-        padding: 2px 6px;
-        display: inline-block;
-        min-width: 50px;
-        font-size: 1.3em;
-        line-height: 1.2em;
-    }
-
-    &-title {
-        background: black;
-        color: white;
-        padding: 2px 6px;
-        display: inline-block;
-        font-size: 1.6em;
-
-        .icon {
-            display: inline-block;
-            margin-left: 10px !important;
-        }
-    }
+// .main-container {
+//     text-align: center;
+//     min-height: 100%;
+//     z-index: 10;
+//     overflow: auto;
+// }
 
 
 
-    &-text {
-        overflow: auto;
-        border: none;
-        outline: none;
-        position: relative;
-        z-index: 10;
-
-        &-empty {
-            background: @grey;
-            width: 20px;
-        }
-    }
-
-    &-deleting {
-        text-align: center;
-        font-size: 2em!important;
-
-        &-feedback {
-            display: inline-block;
-            font-size: 0.6em!important;
-            color: white;
-        }
-    }
-
-    &-prompt {
-
-        margin-left: -20px;
-
-        &-container {
-            position: relative;
-            z-index: 5;
-            width: 0px;
-            height: 0px;
-            font-size: 1.2em;
-        }
-    }
-}
-
-.value-proposition {
-
-    &-gain-creators-pain-relievers {
-        display: inline-block;
-        width: 55%;
-        height: 100%;
-    }
-
-    &-product {
-        display: inline-block;
-        width: 45%;
-        height: 100%;
-        border-right: 2px solid black;
-        vertical-align: top;
-        text-align: left;
-
-        &-content {
-            display: inline-block;
-            vertical-align: middle;
-            width: 90%;
-            padding-left: 20px;
-        }
-
-        &-text {
-            max-height: 700px;
-        }
-    }
-
-    &-pain-relievers {
-        width: 100%;
-        height: 50%;
-        border-top: 2px solid black;
-        text-align: left;
-
-        &-content {
-            display: inline-block;
-            vertical-align: top;
-            width: 75%;
-            padding-left: 20px;
-            padding-top: 20px;
-            text-align: left;
-            // height: 270px;
-        }
-
-        &-text {
-            max-height: 300px;
-        }
-    }
-
-    &-gain-creators {
-        width: 100%;
-        height: 50%;
-        text-align: left;
-
-        &-content {
-            display: inline-block;
-            vertical-align: top;
-            width: 75%;
-            padding-left: 20px;
-            padding-top: 20px;
-            text-align: left;
-            // height: 270px;
-        }
-
-        &-text {
-            max-height: 300px;
-        }
-    }
-
-    &-container {
-
-        vertical-align: middle;
-        display: inline-block;
-        margin: 20px;
-
-        &-top {
-            position: relative;
-            z-index: 10000;
-        }
-    }
-}
-
-.customer-segment {
-
-    border-radius: 999em;
-
-    &-gains-pains {
-        display: inline-block;
-        width: 55%;
-        height: 100%;
-    }
-
-    &-title {
-        background: black;
-        color: white;
-        padding: 2px 6px;
-        display: inline-block;
-        font-size: 1.6em;
-
-        .icon {
-            display: inline-block;
-            margin-left: 10px !important;
-        }
-    }
-
-    &-job {
-        display: inline-block;
-        width: 45%;
-        height: 100%;
-        border-left: 2px solid black;
-        vertical-align: top;
-        text-align: left;
-
-        &-content {
-            display: inline-block;
-            vertical-align: middle;
-            width: 80%;
-            padding-left: 20px;
-        }
-
-        &-text {
-            max-height: 400px;
-        }
-    }
-
-    &-pains {
-        width: 100%;
-        height: 50%;
-        border-top: 2px solid black;
-        text-align: right;
-
-        &-content {
-            display: inline-block;
-            vertical-align: top;
-            width: 75%;
-            padding-right: 20px;
-            padding-top: 20px;
-            text-align: left;
-            height: 270px;
-        }
-
-        &-text {
-            max-height: 200px;
-        }
-    }
-
-    &-gains {
-        width: 100%;
-        height: 50%;
-        text-align: right;
-
-        &-content {
-            display: inline-block;
-            vertical-align: bottom;
-            width: 75%;
-            padding-right: 20px;
-            padding-bottom: 20px;
-            text-align: left;
-            height: 270px;
-        }
-
-        &-text {
-            max-height: 200px;
-        }
-    }
-
-    &-container {
-        display: inline-block;
-        margin: 20px;
-        vertical-align: middle;
-
-        &-top {
-            position: relative;
-            z-index: 10000;
-        }
-    }
-
-
-}
 
 .welcome {
     position: fixed;
@@ -494,21 +302,6 @@ body {
     color: @teal;
 }
 
-.footer  {
-    position: fixed;
-    bottom: 20px;
-    text-align: center;
-    left: 0;
-    right: 0;
-    color: white;
-    font-size: 1em;
-
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-}
 /*
 .github {
     position: fixed;
@@ -526,31 +319,7 @@ body {
     }
 }*/
 
-.beta {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    // font-size: 2.5em;
-    color: white;
-    z-index: 1000;
-    //cursor: pointer;
-    text-align: right;
 
-    &-title {
-        font-size: 1.3em;
-    }
-
-    &-link {
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        &:hover  {
-            text-decoration: underline;
-            color: white;
-        }
-        // font-size: 2em;
-    }
-}
 
 .tutorial {
 
@@ -767,3 +536,10 @@ body {
         background: @grey;
     }
 }
+
+@import "gallery.less";
+@import "canvas.less";
+@import "toolbar.less";
+@import "modal.less";
+@import "sign.less";
+@import "components.less";

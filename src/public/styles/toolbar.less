@@ -1,0 +1,44 @@
+.toolbar {
+
+    &-submenu {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px!important;
+
+        &-content {
+            display: none;
+        }
+
+        &:hover &-content {
+            display: inline-block;
+        }
+    }
+
+    &-top {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 2em;
+        z-index: 100;
+        text-align: right;
+    }
+
+    &-bottom {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        font-size: 2em;
+        z-index: 100;
+        text-align: right;
+
+        &-feedback {
+            display: inline-block;
+            font-size: 0.6em!important;
+            color: white;
+        }
+    }
+
+    &-button {
+        margin: 0;
+    }
+}
