@@ -1,5 +1,12 @@
 const phantom = require('phantom');
+const path = require('path');
+const fs = require('fs-extra');
 
+const config = require('./../../../package.json').config;
+
+var tmpDirPath = path.join(__dirname, '../../../', config.tmp);
+
+fs.ensureDirSync(tmpDirPath);
 
 function valuePropositionCanvasToPdf (link, callback) {
     var pInstance = null;
@@ -17,7 +24,7 @@ function valuePropositionCanvasToPdf (link, callback) {
 //            return pPage.property('viewportSize', {width: 1200, height: 900 });
 //    }).then(function () {
 
-        page.zoomFactor = 0.2;
+        // page.zoomFactor = 0.2;
 
                     return page.property('paperSize', {
                         width: '50cm',
@@ -27,10 +34,14 @@ function valuePropositionCanvasToPdf (link, callback) {
                     });
     }).then(function () {
         return pPage
-        .open("http://localhost:8888/#/canvas/value-proposition/print/"+link);
+        .open("http://"+process.env.HOSTNAME+":"+process.env.PORT+"/#/canvas/value-proposition/print/"+link);
     }).then(function () {
         setTimeout(function () {
-            pPage.render("export.pdf");
+
+            var filename = path.join(tmpDirPath, 'export.pdf');
+
+            pPage.render(filename);
+            console.log('exporting '+link);
 
             callback && callback(filename);
         }, 3000);
@@ -38,5 +49,5 @@ function valuePropositionCanvasToPdf (link, callback) {
 }
 
 module.exports = {
-    valuePropositionCanvasToPdf: valuePropositionCanvasCtrl
+    valuePropositionCanvasToPdf: valuePropositionCanvasToPdf
 }

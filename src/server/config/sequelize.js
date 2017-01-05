@@ -2,9 +2,13 @@ const Sequelize = require('sequelize');
 const fs = require('fs-extra');
 const path = require('path');
 
-fs.ensureDirSync(path.join(__dirname, '../../../data'));
+const config = require('./../../../package.json').config;
 
-var sequelize = new Sequelize('data', 'username', 'password', {
+var dataDirPath = path.join(__dirname, '../../../', config.data);
+
+fs.ensureDirSync(dataDirPath);
+
+var sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
   host: 'localhost',
   dialect: 'sqlite',
 
@@ -15,7 +19,7 @@ var sequelize = new Sequelize('data', 'username', 'password', {
   },
 
   // SQLite only
-  storage: 'data/data.sqlite'
+  storage: path.join(dataDirPath, 'data.sqlite')
 });
 
 module.exports = sequelize;

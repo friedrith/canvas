@@ -1,5 +1,8 @@
 node_modules/
 npm-debug.log
 data/
+tmp/
 export.pdf
 export.png
+.env
+src/public/styles/*.css

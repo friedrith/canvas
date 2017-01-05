@@ -11,6 +11,8 @@ const passport = require('passport');
 const passportSocketIo = require('passport.socketio');
 const cookieParser = require('cookie-parser');
 
+require('dotenv').config();
+
 
 const sequelize = require('./config/sequelize');
 const ValuePropositionCanvas = require('./models/value-proposition-canvas');
@@ -30,12 +32,11 @@ var folders = {
 
 // const passport = require('passport');
 // const LinkedInStrategy = require('passport-linkedin').Strategy;
-// require('dotenv').config();
 
 
 //const linkedinScraper = require('linkedin-scraper');
 
-server.listen(8888);
+server.listen(process.env.PORT);
 
 var sessionOpts = {
     secret: 'secret',
