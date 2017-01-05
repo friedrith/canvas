@@ -11,13 +11,13 @@ const passport = require('passport');
 const passportSocketIo = require('passport.socketio');
 const cookieParser = require('cookie-parser');
 
-const phantom = require('phantom');
 
 const sequelize = require('./config/sequelize');
 const ValuePropositionCanvas = require('./models/value-proposition-canvas');
 const User = require('./models/user');
 
 const passwordHelper = require('./helpers/password');
+const exportHelper = require('./helpers/export');
 
 
 require('./config/setup-passport').init();
@@ -190,36 +190,9 @@ io.on('connection', function (socket) {
     });
 
     socket.on('/canvas/value-proposition/export', function (link) {
-        var pInstance = null;
-        var pPage = null;
-        phantom
-        .create()
-        .then(function (instance) {
-            pInstance = instance;
-            return instance.createPage();
-        })
-        .then(function (page) {
-            pPage = page;
+        exportHelper.valuePropositionCanvasToPdf(link, function (filename) {
 
-            return page.property('paperSize', {
-              width: '59.4cm',
-              height: '42cm',
-              orientation: 'landscape',
-              border: '1cm'
-           })
-              return  page.property('viewportSize', {width: 1920, height: 1362}).then(function() {
-          }).then(function () {
-             pPage
-             .open("http://localhost:8888/#/canvas/value-proposition/print/tLhTdx2Qvoid")
-             .then(function () {
-                 setTimeout(function () {
-                     pPage.render("export.pdf");
-                 }, 3000);
-                 //pInstance.exit();
-             });
-          });
-       });
-
+        });
     });
 
 });
