@@ -1,22 +1,10 @@
-# get-personae.io
+# Canvas
 
+## What is it ?
 
-## User management
+Website to design very easily nice canvas available at [canvas.techmind.io](http://canvas.techmind.io).
 
-http://www.hamiltonchapman.com/blog/2014/3/25/user-accounts-using-sequelize-and-passport-in-nodejs
+For now this website manages:
 
-http://stribny.name/blog/2015/09/authentication-quickstart-with-express-passport-and-sequelize
-
-http://blog.robertonodi.me/node-authentication-series-email-and-password/
-
-
-http://www.scotthasbrouck.com/blog/2016/3/18/passportjs-express-session-with-sockeio
-
-
-## Pdf generation
-
-* http://pdfkit.org/
-* http://stackoverflow.com/questions/16628737/setting-papersize-for-pdf-printing-in-casper
-* http://docs.casperjs.org/en/latest/installation.html
-* http://www.splitfire.fr/blog/article/generer-vos-pdf-avec-phantomjs   
-* https://github.com/amir20/phantomjs-node
+* value proposition canvas
+* (soon available) business model canvas
