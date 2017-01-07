@@ -1,5 +1,5 @@
 {
-  "name": "value-proposition-canvas",
+  "name": "canvas",
   "version": "0.1.0",
   "description": "",
   "main": "src/server/server.js",
@@ -13,21 +13,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ThibaultFriedrich/value-proposition-canvas.git.git"
+    "url": "git+https://github.com/ThibaultFriedrich/canvas.git.git"
   },
   "author": "Thibault Friedrich",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ThibaultFriedrich/value-proposition-canvas.git/issues"
+    "url": "https://github.com/ThibaultFriedrich/canvas.git/issues"
   },
-  "homepage": "https://github.com/ThibaultFriedrich/value-proposition-canvas.git#readme",
+  "homepage": "https://github.com/ThibaultFriedrich/canvas.git#readme",
   "dependencies": {
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
     "fs-extra": "^0.30.0",
-    "linkedin-scraper": "^1.0.1",
-    "node-linkedin": "^0.5.4",
     "passport": "^0.3.2",
     "passport-linkedin": "^1.0.0",
     "phantom": "^3.2.1",
