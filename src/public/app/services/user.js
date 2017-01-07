@@ -8,6 +8,8 @@ app.factory('user', function ($rootScope, $timeout, socket) {
 
     var logged = true;
 
+    var waitingDownload = false;
+
     var canvasCreatedCallback = null;
     var canvasDeletedCallback = null;
 
@@ -15,7 +17,7 @@ app.factory('user', function ($rootScope, $timeout, socket) {
 
     function addFunctions (canvas) {
         canvas.save = function () {
-            socket.emit('/canvas/'+canvas.type+'/update', {
+            socket.emit('/canvas/update', {
                 link: canvas.link,
                 name: canvas.name,
                 target: canvas.target,
@@ -30,13 +32,15 @@ app.factory('user', function ($rootScope, $timeout, socket) {
         };
 
         canvas.delete = function (callback) {
-            socket.emit('/canvas/'+canvas.type+'/delete', canvas.link);
+            socket.emit('/canvas/delete', canvas.link);
             canvasDeletedCallback = callback;
         };
 
         canvas.export = function (callback) {
-            socket.emit('/canvas/'+canvas.type+'/export', canvas.link);
+            socket.emit('/canvas/export', canvas.link);
+            waitingDownload = true;
         };
+
     }
 
     socket.on('/canvas/created', function (data) {
@@ -67,7 +71,8 @@ app.factory('user', function ($rootScope, $timeout, socket) {
 
     var canvasGetCallback = null;
 
-    socket.on('/canvas', function (data) {
+    socket.on('/canvas/found', function (data) {
+        console.log(data);
         addFunctions(data);
         allCanvas.push(data);
         recentsCanvas.push(data);
@@ -75,7 +80,7 @@ app.factory('user', function ($rootScope, $timeout, socket) {
         canvasGetCallback = null;
     });
 
-    socket.on('/canvas/found/not', function (data) {
+    socket.on('/canvas/not/found', function (data) {
         canvasGetCallback && canvasGetCallback(data);
         canvasGetCallback = null;
     });
@@ -104,6 +109,27 @@ app.factory('user', function ($rootScope, $timeout, socket) {
         emailFreeCallback = null;
     });
 
+    socket.on('/canvas/pdf', function (data) {
+        console.log('/canvas/pdf');
+        var byteString = atob(data.dataURI.split(',')[1]);
+
+          // separate out the mime component
+          var mimeString = data.dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+          // write the bytes of the string to an ArrayBuffer
+          var ab = new ArrayBuffer(byteString.length);
+          var ia = new Uint8Array(ab);
+          for (var i = 0; i < byteString.length; i++) {
+              ia[i] = byteString.charCodeAt(i);
+          }
+
+          // write the ArrayBuffer to a blob, and you're done
+          var blob = new Blob([ab], {type: mimeString});
+
+          saveAs(blob, data.name);
+          waitingDownload = false;
+    });
+
 
     return {
         recentsCanvas: function () {
@@ -118,11 +144,11 @@ app.factory('user', function ($rootScope, $timeout, socket) {
         logged: function () {
             return logged;
         },
-        createValuePropositionCanvas: function (callback) {
-            socket.emit('/canvas/value-proposition/create');
+        createCanvas: function (type, callback) {
+            socket.emit('/canvas/create', type);
             canvasCreatedCallback = callback;
         },
-        getValuePropositionCanvas: function (link, callback) {
+        getCanvas: function (link, callback) {
             var found = false;
             for (var i = 0 ; i < allCanvas.length ; i++) {
                 if (allCanvas[i].link == link) {
@@ -132,7 +158,7 @@ app.factory('user', function ($rootScope, $timeout, socket) {
             }
             if (!found) {
                 canvasGetCallback = callback;
-                socket.emit('/canvas/value-proposition/get', link);
+                socket.emit('/canvas', link);
             }
 
         },
@@ -145,6 +171,9 @@ app.factory('user', function ($rootScope, $timeout, socket) {
         checkEmail: function (email, callback) {
             socket.emit('/email/free', email);
             emailFreeCallback = callback;
+        },
+        waitingDownload: function () {
+            return waitingDownload;
         }
     }
 });

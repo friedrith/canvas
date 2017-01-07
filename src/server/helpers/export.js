@@ -1,6 +1,7 @@
 const phantom = require('phantom');
 const path = require('path');
 const fs = require('fs-extra');
+const randomstring = require("randomstring");
 
 const config = require('./../../../package.json').config;
 
@@ -34,16 +35,20 @@ function valuePropositionCanvasToPdf (link, callback) {
                     });
     }).then(function () {
         return pPage
-        .open("http://"+process.env.HOSTNAME+":"+process.env.PORT+"/#/canvas/value-proposition/print/"+link);
+        .open("http://"+process.env.HOSTNAME+":"+process.env.PORT+"/#/canvas/print/"+link);
     }).then(function () {
         setTimeout(function () {
 
-            var filename = path.join(tmpDirPath, 'export.pdf');
 
-            pPage.render(filename);
-            console.log('exporting '+link);
 
-            callback && callback(filename);
+            var filename = path.join(tmpDirPath, randomstring.generate(12)+'.pdf');
+
+            pPage.render(filename).then(function () {
+                console.log('exporting '+link);
+
+                callback && callback(filename);
+            });
+
         }, 3000);
     });
 }

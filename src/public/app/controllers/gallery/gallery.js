@@ -14,8 +14,8 @@ app.controller('GalleryCtrl', function($scope, $location, user) {
     $scope.chooseCanvas = function (canvas) {
 
         if (canvas.url == 'canvas/value-proposition') {
-            $scope.user.createValuePropositionCanvas(function (data) {
-                $location.path(canvas.url+'/'+data.link);
+            $scope.user.createCanvas('value-proposition', function (data) {
+                $location.path('/'+data.link);
             });
         }
 

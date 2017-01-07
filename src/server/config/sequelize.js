@@ -16,10 +16,12 @@ var options = {
     max: 5,
     min: 0,
     idle: 10000
-  },
+  }
+
+
 };
 
-if (process.env.DB_TYPE == 'sqlite') {
+if ('sqlite' == process.env.DB_TYPE) {
     options.storage = path.join(dataDirPath, 'data.sqlite');
 }
 

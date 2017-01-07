@@ -2,6 +2,6 @@
 app.controller('ListCtrl', function($scope, $location, user) {
 
     $scope.openCanvas = function (canvas) {
-        $location.path('/canvas/'+canvas.type+'/'+canvas.link);
+        $location.path('/canvas/'+canvas.link);
     }
 });

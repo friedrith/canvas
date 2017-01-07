@@ -15,7 +15,8 @@ require('dotenv').config();
 
 
 const sequelize = require('./config/sequelize');
-const ValuePropositionCanvas = require('./models/value-proposition-canvas');
+// const ValuePropositionCanvas = require('./models/value-proposition-canvas');
+const Canvas = require('./models/canvas');
 const User = require('./models/user');
 
 const passwordHelper = require('./helpers/password');
@@ -29,6 +30,8 @@ var folders = {
     node: path.join(__dirname, '../../node_modules'),
     data: path.join(__dirname, '../../data')
 };
+
+const canvasTypes = [ 'value-proposition' ];
 
 // const passport = require('passport');
 // const LinkedInStrategy = require('passport-linkedin').Strategy;
@@ -108,32 +111,37 @@ io.on('connection', function (socket) {
         }
     });
 
+    socket.on('/canvas/create', function (type) {
+        if (canvasTypes.indexOf(type) < 0) {
+            socket.emit('/canvas/created/error', 'bad type');
+            return;
+        }
 
-    socket.on('/canvas/value-proposition/create', function () {
         var link = randomstring.generate(12);
-        ValuePropositionCanvas.create({
-            link: link
+        Canvas.create({
+            link: link,
+            type: type
         }).then(function (canvas) {
             if (canvas) {
                 socket.emit('/canvas/created', {
                     link: canvas.link,
                     name: canvas.name,
-                    job: canvas.job,
-                    pains: canvas.pains,
-                    gains: canvas.gains,
-                    painrelievers: canvas.painrelievers,
-                    gaincreator: canvas.gaincreator,
-                    product: canvas.product,
+                    job: '',
+                    pains: '',
+                    gains: '',
+                    painrelievers: '',
+                    gaincreator: '',
+                    product: '',
                     target: canvas.target,
                     zoom: canvas.zoom,
-                    type: 'value-proposition'
+                    type: canvas.type
                 });
             }
         })
     });
 
-    socket.on('/canvas/value-proposition/delete', function (link) {
-        ValuePropositionCanvas.destroy({
+    socket.on('/canvas/delete', function (link) {
+        Canvas.destroy({
             where: {
                 link: link
             }
@@ -142,16 +150,26 @@ io.on('connection', function (socket) {
         })
     });
 
-    socket.on('/canvas/value-proposition/update', function (canvas) {
-        ValuePropositionCanvas.update({
-                name: canvas.name,
+    socket.on('/canvas/update', function (canvas) {
+
+        var content = {};
+
+        if (canvas.type == canvasTypes.valueProposition) {
+            content = {
                 job: canvas.job,
                 pains: canvas.pains,
                 gains: canvas.gains,
-                zoom: canvas.zoom,
-                target: canvas.target,
                 painrelievers: canvas.painrelievers,
                 gaincreator: canvas.gaincreator,
+                product: canvas.product
+            };
+        }
+
+        Canvas.update({
+                name: canvas.name,
+                content: JSON.stringify(content),
+                zoom: canvas.zoom,
+                target: canvas.target,
                 product: canvas.product
             },
             {
@@ -163,36 +181,59 @@ io.on('connection', function (socket) {
         })
     });
 
-    socket.on('/canvas/value-proposition/get', function (link) {
-        ValuePropositionCanvas.findOne({
+    socket.on('/canvas', function (link) {
+        Canvas.findOne({
             where: {
                 link: link
             }
         }).then(function (canvas) {
             if (canvas) {
-                socket.emit('/canvas', {
+                var content = JSON.parse(canvas.content);
+                socket.emit('/canvas/found', {
                     link: canvas.link,
                     name: canvas.name,
-                    job: canvas.job,
-                    pains: canvas.pains,
-                    gains: canvas.gains,
-                    painrelievers: canvas.painrelievers,
-                    gaincreator: canvas.gaincreator,
-                    product: canvas.product,
+                    job: content.job,
+                    pains: content.pains,
+                    gains: content.gains,
+                    painrelievers: content.painrelievers,
+                    gaincreator: content.gaincreator,
+                    product: content.product,
                     target: canvas.target,
                     zoom: canvas.zoom,
                     type: 'value-proposition'
                 });
             } else {
-                socket.emit('/canvas/found/not');
+                socket.emit('/canvas/not/found');
             }
 
         });
     });
 
-    socket.on('/canvas/value-proposition/export', function (link) {
+    socket.on('/canvas/export', function (link) {
         exportHelper.valuePropositionCanvasToPdf(link, function (filename) {
 
+            fs.readFile(filename, function (err, data) {
+                console.log('fs.readfile');
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                var base64 = data.toString('base64');
+
+                Canvas.findOne({
+                    where: {
+                        link: link
+                    }
+                }).then(function (canvas) {
+                    if (canvas) {
+                        socket.emit('/canvas/pdf', { dataURI: 'data:application/pdf;base64,'+base64, name: canvas.name});
+                        // fs.unlink(filename);
+                    } else {
+                        socket.emit('/canvas/not/found');
+                    }
+
+                });
+            });
         });
     });
 
