@@ -5,7 +5,7 @@ var Canvas = sequelize.define('canvas', {
     link: {type: Sequelize.STRING, defaultValue: '', unique: true },
     type: {type: Sequelize.STRING, defaultValue: 'value-proposition'},
     name: {type: Sequelize.STRING, defaultValue: 'Untitled' },
-    content: {type: Sequelize.TEXT, defaultValue: '{}'},
+    content: {type: Sequelize.TEXT},
     target: {type: Sequelize.STRING, defaultValue: 'all' },
     zoom: {type: Sequelize.INTEGER, defaultValue: 70 }
 }, {
