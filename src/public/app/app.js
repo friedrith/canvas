@@ -2,7 +2,7 @@
 
 var app = angular.module('canvas', ['ngRoute', 'ngCookies', 'ngSanitize'/*, 'ngFitText'*/]);
 
-app.config(function ($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
     /*
     .when('/welcome', {
@@ -36,4 +36,7 @@ app.config(function ($routeProvider) {
     .otherwise({
         redirectTo: '/gallery'
     });
+
+    // use the HTML5 History API
+    $locationProvider.html5Mode(true);
 });
