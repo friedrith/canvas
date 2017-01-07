@@ -28,6 +28,7 @@
     "fs-extra": "^0.30.0",
     "passport": "^0.3.2",
     "passport-linkedin": "^1.0.0",
+    "passport-local": "^1.0.0",
     "passport.socketio": "^3.7.0",
     "phantom": "^3.2.1",
     "randomstring": "^1.1.5",
