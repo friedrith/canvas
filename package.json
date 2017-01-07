@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ThibaultFriedrich/canvas.git.git"
+    "url": "git+https://github.com/ThibaultFriedrich/canvas.git"
   },
   "author": "Thibault Friedrich",
   "license": "MIT",
