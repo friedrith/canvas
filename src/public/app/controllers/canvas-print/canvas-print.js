@@ -31,6 +31,6 @@ app.controller('CanvasPrintCtrl', function($scope, $location, $timeout, $routePa
         }
     });
 
-    $scope.hostname = window.location.host;
+    $scope.hostname = 'canvas.techmind.io';
 
 });
