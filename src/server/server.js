@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const session = require('express-session');
+const cons = require('consolidate');
 
 const io = require('socket.io')(server);
 const fs = require('fs-extra');
@@ -39,7 +40,9 @@ const canvasTypes = [ 'value-proposition' ];
 
 //const linkedinScraper = require('linkedin-scraper');
 
-server.listen(process.env.PORT);
+server.listen(process.env.PORT, function () {
+    console.log('listening on http://localhost:'+process.env.PORT);
+});
 
 var sessionOpts = {
     secret: 'secret',
@@ -51,13 +54,30 @@ var sessionOpts = {
 
 app.use(session(sessionOpts));
 
-
 // Initialize Passport session
 app.use(passport.initialize());
 app.use(passport.session());
 
+// assign the swig engine to .html files
+app.engine('html', cons.swig);
+
+// set .html as the default extension
+app.set('view engine', 'html');
+app.set('views', path.join(folders.public, 'templates'));
+
+app.get('/', function(req, res){
+  res.render('index', {
+    title: 'Consolidate.js'
+  });
+});
+
 app
-.use(express.static(folders.public));
+.use(express.static(folders.public))
+.get('*', function (req, res) {
+    res.render('app', {
+      title: 'Consolidate.js'
+    });
+});
 // .use('/file', express.static(folders.public))
 // .use('/file/node_modules', express.static(folders.node));
 

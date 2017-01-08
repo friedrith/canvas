@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ThibaultFriedrich/canvas.git#readme",
   "dependencies": {
+    "consolidate": "^0.14.5",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
@@ -38,6 +39,8 @@
     "sequelize": "^3.24.3",
     "socket.io": "^1.4.8",
     "sqlite3": "^3.1.8",
+    "swig": "^1.4.2",
+    "twig": "^0.10.3",
     "webpage": "^0.3.0"
   },
   "devDependencies": {
