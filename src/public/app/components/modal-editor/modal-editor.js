@@ -3,7 +3,7 @@ app.directive("modalEditor", function($rootScope) {
     restrict: "E",
     replace: true,
     transclude: true,
-    templateUrl: 'app/components/modal-editor/modal-editor.html',
+    templateUrl: '/app/components/modal-editor/modal-editor.html',
     scope: { icon: '@', title: '@', model: '=', show: '=' },
     link: function(scope, element, attrs, ngModel) {
         angular.element(element).modal({

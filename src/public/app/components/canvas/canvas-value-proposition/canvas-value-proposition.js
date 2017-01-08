@@ -3,7 +3,7 @@ app.directive("canvasValueProposition", function(user) {
     restrict: "E",
     replace: true,
     transclude: true,
-    templateUrl: 'app/components/canvas/canvas-value-proposition/canvas-value-proposition.html',
+    templateUrl: '/app/components/canvas/canvas-value-proposition/canvas-value-proposition.html',
     link: function(scope, element, attrs, ngModel) {
 
         scope.showProductEditor = false;

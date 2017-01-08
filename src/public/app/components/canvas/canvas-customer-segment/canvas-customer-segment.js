@@ -3,7 +3,7 @@ app.directive("canvasCustomerSegment", function(user) {
     restrict: "E",
     replace: true,
     transclude: true,
-    templateUrl: 'app/components/canvas/canvas-customer-segment/canvas-customer-segment.html',
+    templateUrl: '/app/components/canvas/canvas-customer-segment/canvas-customer-segment.html',
     link: function(scope, element, attrs, ngModel) {
 
         scope.showPainsEditor = false;

@@ -3,7 +3,7 @@ app.directive("header", function(user) {
     restrict: "A",
     replace: true,
     transclude: true,
-    templateUrl: 'app/components/header/header.html',
+    templateUrl: '/app/components/header/header.html',
     link: function(scope, element, attrs, ngModel) {
 
 

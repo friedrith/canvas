@@ -3,7 +3,7 @@ app.directive("beta", function(user) {
     restrict: "E",
     replace: true,
     transclude: true,
-    templateUrl: 'app/components/beta/beta.html',
+    templateUrl: '/app/components/beta/beta.html',
     link: function(scope, element, attrs, ngModel) {
 
 

@@ -22,15 +22,15 @@ app.config(function ($routeProvider, $locationProvider) {
         controller: 'ListCtrl'
     })*/
     .when('/gallery', {
-        templateUrl: 'app/controllers/gallery/gallery.html',
+        templateUrl: '/app/controllers/gallery/gallery.html',
         controller: 'GalleryCtrl'
     })
     .when('/:link', {
-        templateUrl: 'app/controllers/canvas/canvas.html',
+        templateUrl: '/app/controllers/canvas/canvas.html',
         controller: 'CanvasCtrl'
     })
     .when('/print/:link', {
-        templateUrl: 'app/controllers/canvas-print/canvas-print.html',
+        templateUrl: '/app/controllers/canvas-print/canvas-print.html',
         controller: 'CanvasPrintCtrl'
     })
     .otherwise({

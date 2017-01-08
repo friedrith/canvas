@@ -3,7 +3,7 @@ app.directive("passwordValidator", function($rootScope) {
     restrict: "E",
     replace: true,
     transclude: true,
-    templateUrl: 'app/components/password-validator/password-validator.html',
+    templateUrl: '/app/components/password-validator/password-validator.html',
     scope: { password: '=', min: '@', strength : '=' },
     link: function(scope, element, attrs, ngModel) {
 
