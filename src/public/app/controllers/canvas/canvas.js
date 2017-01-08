@@ -82,11 +82,12 @@ app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $co
                 $scope.deletingTimeout = null;
                 $scope.displayDeleting = false;
                 $scope.canvas.delete(function () {
-                    if ($scope.user.allCanvas().length == 0) {
+                    //if ($scope.user.allCanvas().length == 0) {
                         $location.path('/gallery');
+                    /*
                     } else {
                         $location.path('/list');
-                    }
+                    }*/
                 });
                 // canvas.init();
             }

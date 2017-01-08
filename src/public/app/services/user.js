@@ -45,8 +45,8 @@ app.factory('user', function ($rootScope, $timeout, socket) {
 
     socket.on('/canvas/created', function (data) {
         addFunctions(data);
-        allCanvas.push(data);
-        recentsCanvas.push(data);
+        // allCanvas.push(data);
+        // recentsCanvas.push(data);
         canvasCreatedCallback && canvasCreatedCallback(data);
         canvasCreatedCallback = null;
     });
@@ -74,8 +74,8 @@ app.factory('user', function ($rootScope, $timeout, socket) {
     socket.on('/canvas/found', function (data) {
         console.log(data);
         addFunctions(data);
-        allCanvas.push(data);
-        recentsCanvas.push(data);
+        // allCanvas.push(data);
+        // recentsCanvas.push(data);
         canvasGetCallback && canvasGetCallback(data);
         canvasGetCallback = null;
     });
