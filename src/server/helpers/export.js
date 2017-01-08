@@ -35,7 +35,7 @@ function valuePropositionCanvasToPdf (link, callback) {
                     });
     }).then(function () {
         return pPage
-        .open("http://"+process.env.HOSTNAME+":"+process.env.PORT+"/#/canvas/print/"+link);
+        .open("http://localhost:"+process.env.PORT+"/print/"+link);
     }).then(function () {
         setTimeout(function () {
 
