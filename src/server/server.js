@@ -140,7 +140,8 @@ io.on('connection', function (socket) {
         var link = randomstring.generate(12);
         Canvas.create({
             link: link,
-            type: type
+            type: type,
+            content: JSON.stringify({job: '', pains: '', gains: '', painrelievers: '', gaincreator: '', product: ''})
         }).then(function (canvas) {
             if (canvas) {
                 socket.emit('/canvas/created', {
@@ -208,6 +209,7 @@ io.on('connection', function (socket) {
             }
         }).then(function (canvas) {
             if (canvas) {
+
                 var content = JSON.parse(canvas.content);
                 socket.emit('/canvas/found', {
                     link: canvas.link,
