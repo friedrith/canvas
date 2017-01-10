@@ -9,7 +9,6 @@ For now this website manages:
 * value proposition canvas
 * (soon available) business model canvas
 
-
 ```javascript
 
 npm install
