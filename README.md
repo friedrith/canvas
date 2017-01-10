@@ -13,5 +13,4 @@ For now this website manages:
 
 npm install
 npm start
-
 ```
