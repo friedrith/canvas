@@ -16,18 +16,15 @@ app.factory('user', function ($rootScope, $timeout, socket) {
     socket.emit('canvas/all/get');
 
     function addFunctions (canvas) {
+        console.log(canvas.type);
         canvas.save = function () {
             socket.emit('/canvas/update', {
                 link: canvas.link,
+                type: canvas.type,
                 name: canvas.name,
                 target: canvas.target,
                 zoom: canvas.zoom,
-                job: canvas.job,
-                pains: canvas.pains,
-                gains: canvas.gains,
-                painrelievers: canvas.painrelievers,
-                gaincreator: canvas.gaincreator,
-                product: canvas.product
+                content : canvas.content
             });
         };
 

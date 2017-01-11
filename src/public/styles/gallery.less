@@ -11,16 +11,29 @@
 
         position: relative!important;
         cursor:not-allowed!important;
-
+        min-height: 100%!important;
 
         &-editable {
             cursor: pointer!important;
+        }
+
+        &-not-here {
+            text-align: center;
+            padding-top: 60px!important;
+
+            .icon {
+                font-size: 1.4em!important;
+            }
         }
 
         &-title {
             font-size: 1.2em;
             margin: 0;
             padding: 0;
+
+            &-not-here {
+                text-align: center;
+            }
         }
 
         &-img {

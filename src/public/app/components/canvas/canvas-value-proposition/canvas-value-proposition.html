@@ -4,7 +4,7 @@
         <div class="canvas-value-proposition-product canvas-editable" ng-click="showProductEditor = true">
             <div class="canvas-value-proposition-product-content">
                 <h3 class="canvas-subtitle">Product & service<i class="cube icon"></i></h3>
-                <div class="canvas-text canvas-value-proposition-product-text" btf-markdown="(canvas.product | mdNewLine)">
+                <div class="canvas-text canvas-value-proposition-product-text" btf-markdown="(canvas.content.product | mdNewLine)">
                 </div>
             </div>
             <div class="invisible"></div>
@@ -13,7 +13,7 @@
                 <div class="invisible invisible-top"></div>
                 <div class="canvas-value-proposition-gain-creators-content">
                     <h3 class="canvas-subtitle">Gain Creator<i class="line chart icon"></i></h3>
-                    <div class="canvas-text canvas-value-proposition-gain-creators-text" btf-markdown="(canvas.gaincreator | mdNewLine)">
+                    <div class="canvas-text canvas-value-proposition-gain-creators-text" btf-markdown="(canvas.content.gaincreator | mdNewLine)">
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="invisible invisible-top"></div>
                 <div class="canvas-value-proposition-pain-relievers-content">
                     <h3 class="canvas-subtitle">Pain Relievers <i class="first aid icon"></i></h3>
-                    <div class="canvas-text canvas-value-proposition-pain-relievers-text" btf-markdown="(canvas.painrelievers | mdNewLine)">
+                    <div class="canvas-text canvas-value-proposition-pain-relievers-text" btf-markdown="(canvas.content.painrelievers | mdNewLine)">
                     </div>
                 </div>
             </div>
@@ -29,9 +29,9 @@
     </div>
 
 
-    <modal-editor show="showProductEditor" title="Product/Service" icon="cube" model="canvas.product"></modal-editor>
-    <modal-editor show="showGainCreatorEditor" title="Gain Creator" icon="line chart" model="canvas.gaincreator"></modal-editor>
-    <modal-editor show="showPainRelieversEditor" title="Pain Relievers" icon="first aid" model="canvas.painrelievers"></modal-editor>
+    <modal-editor show="showProductEditor" title="Product/Service" icon="cube" model="canvas.content.product"></modal-editor>
+    <modal-editor show="showGainCreatorEditor" title="Gain Creator" icon="line chart" model="canvas.content.gaincreator"></modal-editor>
+    <modal-editor show="showPainRelieversEditor" title="Pain Relievers" icon="first aid" model="canvas.content.painrelievers"></modal-editor>
 
 
 

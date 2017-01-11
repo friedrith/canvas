@@ -1,5 +1,5 @@
 'use strict';
-app.controller('GalleryCtrl', function($scope, $location, user) {
+app.controller('GalleryCtrl', function($scope, $location, $window, user) {
 
     $scope.user = user;
 
@@ -7,19 +7,26 @@ app.controller('GalleryCtrl', function($scope, $location, user) {
     $scope.canvasList = [
         {
             name: "Value Proposition Canvas",
-            url: "canvas/value-proposition"
+            type: "value-proposition",
+            label: "No pain, no gain!",
+            img: "canvas.png"
+        },
+        {
+            name: "Business Model Canvas",
+            type: "business-model",
+            label: "Business is Business !",
+            img: "business-model-canvas-3.png"
         }
     ];
 
-    $scope.chooseCanvas = function (canvas) {
-
-        if (canvas.url == 'canvas/value-proposition') {
-            $scope.user.createCanvas('value-proposition', function (data) {
-                $location.path('/'+data.link);
-            });
-        }
-
+    $scope.chooseCanvas = function (type) {
+        $scope.user.createCanvas(type, function (data) {
+            $location.path('/'+data.link);
+        });
     };
 
+    $scope.mailTo = function () {
+        $window.open('mailto:tf@elqui.fr' + "?subject=new canvas please&body=I would like a new kind of canvas","_self");
+    };
 
 });

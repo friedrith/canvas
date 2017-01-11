@@ -32,7 +32,7 @@ var folders = {
     data: path.join(__dirname, '../../data')
 };
 
-const canvasTypes = [ 'value-proposition' ];
+const canvasTypes = [ 'value-proposition', 'business-model' ];
 
 // const passport = require('passport');
 // const LinkedInStrategy = require('passport-linkedin').Strategy;
@@ -138,21 +138,24 @@ io.on('connection', function (socket) {
         }
 
         var link = randomstring.generate(12);
+
+        console.log(type);
+        var content = '{}';
+        if (type == 'value-proposition') {
+            content = JSON.stringify({job: '', pains: '', gains: '', painrelievers: '', gaincreator: '', product: ''});
+        } else if (type == 'business-model') {
+            content = JSON.stringify({segments: '', relationships: '', channels: '', revenues: '', valueproposition: '', activities: '', resources: '', partners: '', costs: ''});
+        }
         Canvas.create({
             link: link,
             type: type,
-            content: JSON.stringify({job: '', pains: '', gains: '', painrelievers: '', gaincreator: '', product: ''})
+            content: content
         }).then(function (canvas) {
             if (canvas) {
                 socket.emit('/canvas/created', {
                     link: canvas.link,
                     name: canvas.name,
-                    job: '',
-                    pains: '',
-                    gains: '',
-                    painrelievers: '',
-                    gaincreator: '',
-                    product: '',
+                    content: JSON.parse(canvas.content),
                     target: canvas.target,
                     zoom: canvas.zoom,
                     type: canvas.type
@@ -175,14 +178,26 @@ io.on('connection', function (socket) {
 
         var content = {};
 
-        if (canvas.type == canvasTypes.valueProposition) {
+        if (canvas.type == 'value-proposition') {
             content = {
-                job: canvas.job,
-                pains: canvas.pains,
-                gains: canvas.gains,
-                painrelievers: canvas.painrelievers,
-                gaincreator: canvas.gaincreator,
-                product: canvas.product
+                job: canvas.content.job,
+                pains: canvas.content.pains,
+                gains: canvas.content.gains,
+                painrelievers: canvas.content.painrelievers,
+                gaincreator: canvas.content.gaincreator,
+                product: canvas.content.product
+            };
+        } else if (canvas.type == 'business-model') {
+            content = {
+                segments: canvas.content.segments,
+                relationships: canvas.content.relationships,
+                channels: canvas.content.channels,
+                valueproposition: canvas.content.valueproposition,
+                revenues: canvas.content.revenues,
+                activities: canvas.content.activities,
+                resources: canvas.content.resources,
+                partners: canvas.content.partners,
+                costs: canvas.content.costs
             };
         }
 
@@ -191,7 +206,6 @@ io.on('connection', function (socket) {
                 content: JSON.stringify(content),
                 zoom: canvas.zoom,
                 target: canvas.target,
-                product: canvas.product
             },
             {
             where: {
@@ -211,18 +225,14 @@ io.on('connection', function (socket) {
             if (canvas) {
 
                 var content = JSON.parse(canvas.content);
+                console.log(canvas.type);
                 socket.emit('/canvas/found', {
                     link: canvas.link,
                     name: canvas.name,
-                    job: content.job,
-                    pains: content.pains,
-                    gains: content.gains,
-                    painrelievers: content.painrelievers,
-                    gaincreator: content.gaincreator,
-                    product: content.product,
+                    content: content,
                     target: canvas.target,
                     zoom: canvas.zoom,
-                    type: 'value-proposition'
+                    type: canvas.type
                 });
             } else {
                 socket.emit('/canvas/not/found');

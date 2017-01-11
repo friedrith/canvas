@@ -1,0 +1,78 @@
+<div class="canvas-container">
+    <div class="canvas-business-model">
+        <div class="canvas-business-model-partners canvas-editable" ng-click="showPartnersEditor = true">
+            <div class="canvas-business-model-content">
+                <h3 class="canvas-subtitle">Key Partners<i class="linkify icon"></i></h3>
+                <div class="canvas-text canvas-business-model-partners-text" btf-markdown="(canvas.content.partners | mdNewLine)">
+                </div>
+            </div>
+        </div><div class="canvas-business-model-activities-resources">
+            <div class="canvas-business-model-activities canvas-editable" ng-click="showActivitiesEditor = true">
+                <div class="canvas-business-model-content">
+                    <h3 class="canvas-subtitle">Key Activities<i class="check circle icon"></i></h3>
+                    <div class="canvas-text canvas-business-model-activities-text" btf-markdown="(canvas.content.activities | mdNewLine)">
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-business-model-resources canvas-editable" ng-click="showResourcesEditor = true">
+                <div class="canvas-business-model-content">
+                    <h3 class="canvas-subtitle">Key Resources<i class="industry icon"></i></h3>
+                    <div class="canvas-text canvas-business-model-resources-text" btf-markdown="(canvas.content.resources | mdNewLine)">
+                    </div>
+                </div>
+            </div>
+        </div><div class="canvas-business-model-value-proposition canvas-editable" ng-click="showValuePropositionEditor = true">
+            <div class="canvas-business-model-content">
+                <h3 class="canvas-subtitle">Value Proposition<i class="gift icon"></i></h3>
+                <div class="canvas-text canvas-business-model-value-proposition-text" btf-markdown="(canvas.content.valueproposition | mdNewLine)">
+                </div>
+            </div>
+        </div><div class="canvas-business-model-relationships-channels">
+            <div class="canvas-business-model-relationships canvas-editable" ng-click="showRelationshipsEditor = true">
+                <div class="canvas-business-model-content">
+                    <h3 class="canvas-subtitle">Customer Relationships<i class="heart icon"></i></h3>
+                    <div class="canvas-text canvas-business-model-relationships-text" btf-markdown="(canvas.content.relationships | mdNewLine)">
+                    </div>
+                </div>
+            </div>
+            <div class="canvas-business-model-channels canvas-editable" ng-click="showChannelsEditor = true">
+                <div class="canvas-business-model-content">
+                    <h3 class="canvas-subtitle">Channels<i class="shipping icon"></i></h3>
+                    <div class="canvas-text canvas-business-model-channels-text" btf-markdown="(canvas.content.channels | mdNewLine)">
+                    </div>
+                </div>
+            </div>
+        </div><div class="canvas-business-model-segments canvas-editable" ng-click="showSegmentsEditor = true">
+            <div class="canvas-business-model-content">
+                <h3 class="canvas-subtitle">Customer Segments<i class="users icon"></i></h3>
+                <div class="canvas-text canvas-business-model-segments-text" btf-markdown="(canvas.content.segments | mdNewLine)">
+                </div>
+            </div>
+        </div><div class="canvas-business-model-costs canvas-editable" ng-click="showCostsEditor = true">
+            <div class="canvas-business-model-content">
+                <h3 class="canvas-subtitle">Cost Structure<i class="ticket icon"></i></h3>
+                <div class="canvas-text canvas-business-model-costs-text" btf-markdown="(canvas.content.costs | mdNewLine)">
+                </div>
+            </div>
+        </div><div class="canvas-business-model-revenues canvas-editable" ng-click="showRevenuesEditor = true">
+            <div class="canvas-business-model-content">
+                <h3 class="canvas-subtitle">Revenue Streams<i class="dollar icon"></i></h3>
+                <div class="canvas-text canvas-business-model-revenues-text" btf-markdown="(canvas.content.revenues | mdNewLine)">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <modal-editor show="showPartnersEditor" title="Key Partners" icon="linkify" model="canvas.content.partners"></modal-editor>
+    <modal-editor show="showActivitiesEditor" title="Key Activities" icon="check circle" model="canvas.content.activities"></modal-editor>
+    <modal-editor show="showResourcesEditor" title="Key Resources" icon="industry" model="canvas.content.resources"></modal-editor>
+    <modal-editor show="showValuePropositionEditor" title="Value Proposition" icon="gift" model="canvas.content.valueproposition"></modal-editor>
+    <modal-editor show="showRelationshipsEditor" title="Customer Relationships" icon="heart" model="canvas.content.relationships"></modal-editor>
+    <modal-editor show="showChannelsEditor" title="Channels" icon="shipping" model="canvas.content.channels"></modal-editor>
+    <modal-editor show="showSegmentsEditor" title="Customer Segments" icon="users" model="canvas.content.segments"></modal-editor>
+    <modal-editor show="showCostsEditor" title="Cost Structure" icon="ticket" model="canvas.content.costs"></modal-editor>
+    <modal-editor show="showRevenuesEditor" title="Revenue Streams" icon="dollar" model="canvas.content.revenues"></modal-editor>
+
+</div>

@@ -28,7 +28,7 @@ app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $co
                 $scope.canvas.save();
             }, true);
 
-            $scope.showWarning = true;
+            $scope.showWarning = false;
 
         } else {
             $scope.$apply(function () {
@@ -154,15 +154,23 @@ app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $co
 
     $scope.showLastChance = false;
 
+    $scope.isEmpty = function (canvas) {
+        if (canvas.name != 'Untitled') {
+            return false;
+        }
+
+        for (var value in canvas.content) {
+            if (canvas.content[value] != '' && canvas.content[value] != undefined) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     $scope.gotoGallery = function () {
         // console.log($scope.canvas.name+"/"+$scope.canvas.job+"/"+$scope.canvas.gains+"/"+$scope.canvas.pains+"/"+$scope.canvas.painrelievers+"/"+$scope.canvas.gaincreator+"/"+$scope.canvas.product);
-        if ($scope.canvas.name != 'Untitled'
-        || $scope.canvas.job != ''
-        || $scope.canvas.gains != ''
-        || $scope.canvas.pains != ''
-        || $scope.canvas.painrelievers != ''
-        || $scope.canvas.gaincreator != ''
-        || $scope.canvas.product != '') {
+        if (!$scope.isEmpty($scope.canvas)) {
             $scope.showLastChance = true;
         } else {
             $scope.closeCanvas();

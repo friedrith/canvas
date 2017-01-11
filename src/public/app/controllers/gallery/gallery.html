@@ -7,18 +7,23 @@
     <h1 class="gallery-title">Choose your canvas</h1>
     <div class="ui three column grid">
       <div class="column" ng-repeat="canvas in canvasList">
-        <div class="ui segment inverted gallery-canvas gallery-canvas-editable" ng-click="chooseCanvas(canvas)">
+        <div class="ui segment inverted gallery-canvas gallery-canvas-editable" ng-click="chooseCanvas(canvas.type)">
             <div class="gallery-canvas-img-container">
-                <img src="img/canvas.png" class="gallery-canvas-img">
+                <img src="img/{{canvas.img}}" class="gallery-canvas-img">
             </div>
             <h2 class="gallery-canvas-title">{{canvas.name}}</h2>
-            <h3 class="gallery-canvas-label">No pain, no gain!</h3>
+            <h3 class="gallery-canvas-label">{{canvas.label}}</h3>
         </div>
       </div>
       <div class="column">
+        <div class="ui segment inverted gallery-canvas gallery-canvas-not-here gallery-canvas-editable " ng-click="mailTo()">
+            <i class="ui icon plus circle"></i>
+            <h2 class="gallery-canvas-title gallery-canvas-title-not-here">Your prefered canvas is not here? Just ask</h2>
+        </div>
+      </div>
+      <!-- <div class="column">
         <div class="ui segment inverted gallery-canvas ">
             <div class="gallery-canvas-soon-container">
-                <!-- <div class="gallery-canvas-soon"></div> -->
             </div>
             <div class="gallery-canvas-img-container">
                 <img src="img/business-model-canvas-3.png" class="gallery-canvas-img">
@@ -26,7 +31,7 @@
             <h2 class="gallery-canvas-title">Business model canvas</h2>
             <h3 class="gallery-canvas-label">Soon available</h3>
         </div>
-      </div>
+      </div> -->
     </div>
 </div>
 
