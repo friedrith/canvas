@@ -1,5 +1,5 @@
     'use strict';
-app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $cookies, $routeParams, user) {
+app.controller('CanvasPublicCtrl', function($scope, $location, $window, $interval, $cookies, $routeParams, user) {
 
     // $scope.canvas = canvas;
 
@@ -12,7 +12,7 @@ app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $co
     $scope.user = user;
 
     $scope.canvas = null;
-    $scope.editable = true;
+    $scope.editable = false;
 
 
     user.getCanvas($routeParams.link, function (data) {

@@ -6,10 +6,6 @@ app.directive("canvasValueProposition", function(user) {
     templateUrl: '/app/components/canvas/canvas-value-proposition/canvas-value-proposition.html',
     link: function(scope, element, attrs, ngModel) {
 
-        scope.showProductEditor = false;
-        scope.showGainCreatorEditor = false;
-        scope.showPainRelieversEditor = false;
-
     }
   };
 });

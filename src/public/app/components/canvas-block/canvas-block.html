@@ -1,0 +1,9 @@
+    <div class="canvas-{{canvasName}}-{{blockName}}" ng-class="{'canvas-editable': editable}" ng-click="showEditor()">
+        <div class="invisible " ng-class="{'invisible-top': top}"></div>
+        <div class="canvas-{{canvasName}}-{{blockName}}-content">
+            <h3 class="canvas-subtitle">{{title}} <i class="icon {{icon}}"></i></h3>
+            <div class="canvas-text canvas-{{canvasName}}-{{blockName}}-text" btf-markdown="(value | mdNewLine)">
+            </div>
+        </div>
+        <modal-editor show="show" title="{{title}}" icon="{{icon}}" model="value"></modal-editor>
+    </div>

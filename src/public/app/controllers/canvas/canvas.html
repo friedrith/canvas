@@ -69,19 +69,25 @@
         </button>
     </div> -->
 
-    <div class="toolbar-submenu">
+    <!-- <div class="toolbar-submenu">
         <div class="smenu-submenu-content">
         </div>
         <button class="ui button secondary icon large toolbar-button" ng-click="canvas.export()" ng-disabled="user.waitingDownload()">
             <i class="ui icon cloud download"></i>
         </button>
-    </div>
+    </div> -->
 
     <div class="toolbar-submenu">
-        <div class="smenu-submenu-content">
+        <div class="toolbar-submenu-content">
+            <button class="ui button secondary icon large toolbar-button" ng-click="canvas.export()" ng-disabled="user.waitingDownload()">
+                <i class="ui icon cloud download"></i>
+            </button>
+            <button class="ui button secondary icon large toolbar-button" ng-click="displayMagicLink()">
+                <i class="ui icon linkify"></i>
+            </button>
         </div>
-        <button class="ui button secondary icon large toolbar-button" ng-click="displayMagicLink()">
-            <i class="ui icon linkify"></i>
+        <button class="ui button secondary icon large toolbar-button" >
+            <i class="ui icon share alternate"></i>
         </button>
     </div>
 
@@ -139,7 +145,6 @@
                     </div>
                 </div>-->
                 <canvas-business-model ng-if="canvas.type == 'business-model'" ></canvas-business-model>
-
                 <canvas-value-proposition ng-if="canvas.type == 'value-proposition'" ng-show="canvas.target == 'all' || canvas.target == 'value-proposition'"></canvas-value-proposition>
                 <canvas-customer-segment ng-if="canvas.type == 'value-proposition'" ng-show="canvas.target == 'all' || canvas.target == 'customer-segment'"></canvas-customer-segment>
             </div>

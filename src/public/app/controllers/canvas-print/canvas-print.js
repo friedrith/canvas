@@ -10,6 +10,7 @@ app.controller('CanvasPrintCtrl', function($scope, $location, $timeout, $routePa
     $scope.user = user;
 
     $scope.canvas = null;
+    $scope.editable = false;
 
     user.getCanvas($routeParams.link, function (data) {
         // $scope.$apply (function () {

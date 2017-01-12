@@ -19,42 +19,8 @@
                     <div class="canvas-not-found" ng-if="canvas == null">
                         Canvas not found
                     </div>
-                <!--
-
-                    <div class="tutorial-help-container" ng-show="showTutorial && stepTutorial == 'customer-segment'">
-                        <div class="tutorial-help tutorial-help-left">
-                            <div class="tutorial-help-title">On the right side <i class="ui icon pointing right"></i></div>
-                            Gather information about your target :
-                                <ul>
-                                    <li>What your customer does?</li>
-                                    <li>What are his gains?</li>
-                                    <li>What are his pains?</li>
-                                </ul>
-                                <div class="tutorial-next">
-                                    <button class="ui icon button white huge" ng-click="nextStepTutorial()">
-                                        Ok
-                                    </button>
-                                </div>
-                                <p>
-                                    <span class="tutorial-skip-again" ng-click="closeTutorial()">Skip it</span>
-                                </p>
-                        </div>
-                    </div>
-                    <div class="tutorial-help-container" ng-show="showTutorial && stepTutorial == 'value-proposition'">
-                        <div class="tutorial-help tutorial-help-right">
-                            <div class="tutorial-help-title"> <i class="ui icon pointing left"></i>On the left side</div>
-                            Find how to solve customer's pains, improve customer's gains and finally define a product or a service.
-                                <div class="tutorial-next">
-                                    <button class="ui icon button white huge" ng-click="nextStepTutorial()">
-                                        Ok
-                                    </button>
-                                </div>
-                                <p>
-                                    <span class="tutorial-skip-again" ng-click="closeTutorial()">Skip it</span>
-                                </p>
-                        </div>
-                    </div>-->
-                    <canvas-value-proposition ng-show="canvas.target == 'all' || canvas.target == 'value-proposition'"></canvas-value-proposition>
+                    <canvas-business-model canvas="canvas" ng-if="canvas.type == 'business-model'" ></canvas-business-model>
+                    <canvas-value-proposition canvas="canvas"  ng-show="canvas.target == 'all' || canvas.target == 'value-proposition'"></canvas-value-proposition>
                     <canvas-customer-segment ng-show="canvas.target == 'all' || canvas.target == 'customer-segment'"></canvas-customer-segment>
                 </div>
             </div>
