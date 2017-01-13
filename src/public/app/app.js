@@ -29,7 +29,7 @@ app.config(function ($routeProvider, $locationProvider) {
         templateUrl: '/app/controllers/canvas/canvas.html',
         controller: 'CanvasCtrl'
     })
-    .when('/public/:link', {
+    .when('/public/:public', {
         templateUrl: '/app/controllers/canvas-public/canvas-public.html',
         controller: 'CanvasPublicCtrl'
     })

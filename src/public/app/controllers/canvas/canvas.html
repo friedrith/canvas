@@ -1,5 +1,5 @@
 <!-- <div menu-button></div> -->
-<div header></div>
+<div header ng-click="gotoIndex()"></div>
 
 <div footer></div>
 
@@ -152,22 +152,22 @@
 </div>
 
 
-<div class="ui mini modal center" modal="showWarning">
+<div class="ui mini modal" modal="showLinks">
     <div class="header">
-        Remember the magic link
+        Magic links
     </div>
     <div class="content canvas-warning">
-        <i class="ui icon warning sign"></i>
-        <i class="warning sign icon"></i>
+        <!-- <i class="ui icon warning sign"></i>
+        <i class="warning sign icon"></i> -->
 
-        This canvas is only accessible with the following magic link:
 
+        <h3>Private link</h3>
+        <div>Remember this link to edit the canvas:</div>
         <a class="canvas-warning-link" href="http://{{hostname}}/{{canvas.link}}">http://{{hostname}}/{{canvas.link}}</a>
 
-        <div class="canvas-warning-label">
-            Remember it!
-            <!-- Remember it! or we can send you the magic link by email in order to never lose this canvas: -->
-        </div>
+        <h3>Public link</h3>
+        <div>Send this link to share a read-only version of the canvas:</div>
+        <a class="canvas-warning-link" href="http://{{hostname}}/public/{{canvas.public}}">http://{{hostname}}/public/{{canvas.public}}</a>
         <!-- <form class="ui form big" name="form" novalidate>
 
             <div class="ui input">
@@ -178,7 +178,7 @@
         </form> -->
     </div>
     <div class="actions">
-        <div class="ui blue approve button">Ok I get it</div>
+        <div class="ui blue approve button">Close</div>
         <!-- <div class="ui black approve button">Maybe later</div> -->
     </div>
 </div>
@@ -200,7 +200,9 @@
         </div>
     </div>
     <div class="actions">
+        <div class="ui cancel button" >Cancel</div>
         <div class="ui blue approve button" ng-click="closeCanvas()">Ok I get it</div>
+
         <!-- <div class="ui black approve button">Maybe later</div> -->
     </div>
 </div>

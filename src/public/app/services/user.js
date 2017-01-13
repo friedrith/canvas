@@ -13,19 +13,24 @@ app.factory('user', function ($rootScope, $timeout, socket) {
     var canvasCreatedCallback = null;
     var canvasDeletedCallback = null;
 
+    var currentCanvas = null;
+    var canvasLocked = false;
+
     socket.emit('canvas/all/get');
 
     function addFunctions (canvas) {
         console.log(canvas.type);
         canvas.save = function () {
-            socket.emit('/canvas/update', {
-                link: canvas.link,
-                type: canvas.type,
-                name: canvas.name,
-                target: canvas.target,
-                zoom: canvas.zoom,
-                content : canvas.content
-            });
+            if (!canvasLocked) {
+                socket.emit('/canvas/update', {
+                    link: canvas.link,
+                    type: canvas.type,
+                    name: canvas.name,
+                    target: canvas.target,
+                    zoom: canvas.zoom,
+                    content : canvas.content
+                });
+            }
         };
 
         canvas.delete = function (callback) {
@@ -42,10 +47,23 @@ app.factory('user', function ($rootScope, $timeout, socket) {
 
     socket.on('/canvas/created', function (data) {
         addFunctions(data);
+        currentCanvas = data;
         // allCanvas.push(data);
         // recentsCanvas.push(data);
         canvasCreatedCallback && canvasCreatedCallback(data);
         canvasCreatedCallback = null;
+    });
+
+    socket.on('/canvas/updated', function (data) {
+        console.log('updated');
+        if (currentCanvas && currentCanvas.public == data.public) {
+            canvasLocked = true;
+            currentCanvas.content = data.content;
+            currentCanvas.name = data.name;
+            currentCanvas.target = data.target;
+            currentCanvas.zoom = data.zoom;
+            canvasLocked = false;
+        }
     });
 
     socket.on('/canvas/deleted', function (link) {
@@ -64,6 +82,7 @@ app.factory('user', function ($rootScope, $timeout, socket) {
             canvasDeletedCallback && canvasDeletedCallback(link);
             canvasDeletedCallback = null;
         }
+        currentCanvas = null;
     });
 
     var canvasGetCallback = null;
@@ -73,6 +92,7 @@ app.factory('user', function ($rootScope, $timeout, socket) {
         addFunctions(data);
         // allCanvas.push(data);
         // recentsCanvas.push(data);
+        currentCanvas = data;
         canvasGetCallback && canvasGetCallback(data);
         canvasGetCallback = null;
     });
@@ -80,6 +100,19 @@ app.factory('user', function ($rootScope, $timeout, socket) {
     socket.on('/canvas/not/found', function (data) {
         canvasGetCallback && canvasGetCallback(data);
         canvasGetCallback = null;
+    });
+
+    var canvasGetPublicCallback = null;
+
+    socket.on('/canvas/public/found', function (data) {
+        currentCanvas = data;
+        canvasGetPublicCallback && canvasGetPublicCallback(data);
+        canvasGetPublicCallback = null;
+    });
+
+    socket.on('/canvas/public/not/found', function (data) {
+        canvasGetPublicCallback && canvasGetPublicCallback(data);
+        canvasGetPublicCallback = null;
     });
 
     var signUpCallback = null;
@@ -145,6 +178,9 @@ app.factory('user', function ($rootScope, $timeout, socket) {
             socket.emit('/canvas/create', type);
             canvasCreatedCallback = callback;
         },
+        canvasLocked: function () {
+            return canvasLocked;
+        },
         getCanvas: function (link, callback) {
             var found = false;
             for (var i = 0 ; i < allCanvas.length ; i++) {
@@ -158,6 +194,11 @@ app.factory('user', function ($rootScope, $timeout, socket) {
                 socket.emit('/canvas', link);
             }
 
+        },
+        getPublicCanvas: function (link, callback) {
+
+            canvasGetPublicCallback = callback;
+            socket.emit('/canvas/public', link);
         },
         signUp: function (email, password, callback) {
             var data = { email: email, password: password };

@@ -1,5 +1,5 @@
 'use strict';
-app.controller('GalleryCtrl', function($scope, $location, $window, user) {
+app.controller('GalleryCtrl', function($scope, $location, $window, $route, user) {
 
     $scope.user = user;
 
@@ -27,6 +27,10 @@ app.controller('GalleryCtrl', function($scope, $location, $window, user) {
 
     $scope.mailTo = function () {
         $window.open('mailto:tf@elqui.fr' + "?subject=new canvas please&body=I would like a new kind of canvas","_self");
+    };
+
+    $scope.gotoIndex = function () {
+        window.location = '/';
     };
 
 });

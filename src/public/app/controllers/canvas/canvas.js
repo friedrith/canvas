@@ -1,5 +1,5 @@
     'use strict';
-app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $cookies, $routeParams, user) {
+app.controller('CanvasCtrl', function($scope, $location, $route, $window, $interval, $cookies, $routeParams, user) {
 
     // $scope.canvas = canvas;
 
@@ -29,7 +29,7 @@ app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $co
                 $scope.canvas.save();
             }, true);
 
-            $scope.showWarning = false;
+            $scope.showLinks = false;
 
         } else {
             $scope.$apply(function () {
@@ -149,11 +149,12 @@ app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $co
 
 
     $scope.displayMagicLink = function () {
-        $scope.showWarning = true;
+        $scope.showLinks = true;
     };
 
 
     $scope.showLastChance = false;
+    $scope.stateLastChance = '';
 
     $scope.isEmpty = function (canvas) {
         if (canvas.name != 'Untitled') {
@@ -170,6 +171,17 @@ app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $co
     }
 
     $scope.gotoGallery = function () {
+        $scope.stateLastChance = 'gallery';
+        // console.log($scope.canvas.name+"/"+$scope.canvas.job+"/"+$scope.canvas.gains+"/"+$scope.canvas.pains+"/"+$scope.canvas.painrelievers+"/"+$scope.canvas.gaincreator+"/"+$scope.canvas.product);
+        if (!$scope.isEmpty($scope.canvas)) {
+            $scope.showLastChance = true;
+        } else {
+            $scope.closeCanvas();
+        }
+    };
+
+    $scope.gotoIndex = function () {
+        $scope.stateLastChance = 'index';
         // console.log($scope.canvas.name+"/"+$scope.canvas.job+"/"+$scope.canvas.gains+"/"+$scope.canvas.pains+"/"+$scope.canvas.painrelievers+"/"+$scope.canvas.gaincreator+"/"+$scope.canvas.product);
         if (!$scope.isEmpty($scope.canvas)) {
             $scope.showLastChance = true;
@@ -179,7 +191,11 @@ app.controller('CanvasCtrl', function($scope, $location, $window, $interval, $co
     };
 
     $scope.closeCanvas = function () {
-        $location.path('/gallery');
+        if ($scope.stateLastChance == 'gallery') {
+            $location.path('/gallery');
+        } else if ($scope.stateLastChance == 'index') {
+            window.location = '/';
+        }
     };
 
     $scope.hostname = window.location.host;

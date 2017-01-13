@@ -12,7 +12,7 @@ app.controller('CanvasPrintCtrl', function($scope, $location, $timeout, $routePa
     $scope.canvas = null;
     $scope.editable = false;
 
-    user.getCanvas($routeParams.link, function (data) {
+    user.getPublicCanvas($routeParams.link, function (data) {
         // $scope.$apply (function () {
         //
         // });
@@ -20,11 +20,6 @@ app.controller('CanvasPrintCtrl', function($scope, $location, $timeout, $routePa
             console.log(data.name);
             $scope.canvas = data;
 
-            $scope.$watch(function () {
-                return $scope.canvas;
-            }, function () {
-                $scope.canvas.save();
-            }, true);
         } else {
             $scope.$apply(function () {
                 $scope.notFound = true;

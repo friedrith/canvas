@@ -16,7 +16,6 @@ require('dotenv').config();
 
 
 const sequelize = require('./config/sequelize');
-// const ValuePropositionCanvas = require('./models/value-proposition-canvas');
 const Canvas = require('./models/canvas');
 const User = require('./models/user');
 
@@ -92,6 +91,17 @@ io.use(passportSocketIo.authorize({
 
 io.on('connection', function (socket) {
 
+    var currentCanvas = null;
+
+
+    function updateCurrentCanvas (link) {
+        if (currentCanvas && link != currentCanvas) {
+            socket.leave('canvas:'+currentCanvas);
+        }
+        currentCanvas = link;
+        socket.join('canvas:'+link);
+    }
+
     socket.on('/email/free', function (email) {
         console.log('/email/free');
         User.findOne({
@@ -138,6 +148,7 @@ io.on('connection', function (socket) {
         }
 
         var link = randomstring.generate(12);
+        var publicLink = randomstring.generate(12);
 
         console.log(type);
         var content = '{}';
@@ -148,10 +159,12 @@ io.on('connection', function (socket) {
         }
         Canvas.create({
             link: link,
+            public: publicLink,
             type: type,
             content: content
         }).then(function (canvas) {
             if (canvas) {
+                updateCurrentCanvas(canvas.link);
                 socket.emit('/canvas/created', {
                     link: canvas.link,
                     name: canvas.name,
@@ -212,7 +225,32 @@ io.on('connection', function (socket) {
                 link: canvas.link
             }
         }).then(function () {
-            socket.emit('/canvas/updated', canvas.link);
+            // updateCurrentCanvas(canvas.link);
+
+            Canvas.findOne({
+                where: {
+                    link: canvas.link
+                }
+            }).then(function (canvas) {
+                if (canvas) {
+
+                    var content = JSON.parse(canvas.content);
+                    // updateCurrentCanvas('');
+                    // socket.leave('canvas:'+canvas.link);
+                    socket.broadcast.to('canvas:'+canvas.link).emit('/canvas/updated', {
+                    // io.in('canvas:'+canvas.link).emit('/canvas/updated', {
+                        public: canvas.public,
+                        name: canvas.name,
+                        content: content,
+                        target: canvas.target,
+                        zoom: canvas.zoom
+                    });
+                    updateCurrentCanvas(canvas.link);
+                }
+
+            });
+
+            // socket.emit('/canvas/updated', canvas.link);
         })
     });
 
@@ -226,8 +264,11 @@ io.on('connection', function (socket) {
 
                 var content = JSON.parse(canvas.content);
                 console.log(canvas.type);
+                updateCurrentCanvas(canvas.link);
+
                 socket.emit('/canvas/found', {
                     link: canvas.link,
+                    public: canvas.public,
                     name: canvas.name,
                     content: content,
                     target: canvas.target,
@@ -236,6 +277,32 @@ io.on('connection', function (socket) {
                 });
             } else {
                 socket.emit('/canvas/not/found');
+            }
+
+        });
+    });
+
+    socket.on('/canvas/public', function (link) {
+        Canvas.findOne({
+            where: {
+                public: link
+            }
+        }).then(function (canvas) {
+            console.log(canvas);
+            if (canvas) {
+                updateCurrentCanvas(canvas.link);
+
+                var content = JSON.parse(canvas.content);
+                socket.emit('/canvas/public/found', {
+                    public: canvas.public,
+                    name: canvas.name,
+                    content: content,
+                    target: canvas.target,
+                    zoom: canvas.zoom,
+                    type: canvas.type
+                });
+            } else {
+                socket.emit('/canvas/public/not/found');
             }
 
         });
