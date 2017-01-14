@@ -13,6 +13,6 @@ var Canvas = sequelize.define('canvas', {
     freezeTableName: true // Model tableName will be the same as the model name
 });
 
-Canvas.sync({force: false});
+Canvas.sync({force: true});
 
 module.exports = Canvas;

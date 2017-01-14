@@ -3,6 +3,7 @@ const app = express();
 const server = require('http').Server(app);
 const session = require('express-session');
 const cons = require('consolidate');
+const SlackBot = require('slackbots');
 
 const io = require('socket.io')(server);
 const fs = require('fs-extra');
@@ -32,6 +33,19 @@ var folders = {
 };
 
 const canvasTypes = [ 'value-proposition', 'business-model' ];
+
+if (process.env.SLACK_BOT_TOKEN) {
+    var bot = new SlackBot({
+        token: process.env.SLACK_BOT_TOKEN,
+        name: process.env.HOSTNAME
+    });
+
+    bot.on('start', function() {
+        console.log('connected to slack');
+    });
+}
+
+
 
 // const passport = require('passport');
 // const LinkedInStrategy = require('passport-linkedin').Strategy;
@@ -164,6 +178,10 @@ io.on('connection', function (socket) {
             content: content
         }).then(function (canvas) {
             if (canvas) {
+                if (process.env.SLACK_CHANNEL) {
+                    bot.postMessageToChannel(process.env.SLACK_CHANNEL, 'Someone created a new canvas');
+                }
+
                 updateCurrentCanvas(canvas.link);
                 socket.emit('/canvas/created', {
                     link: canvas.link,
@@ -227,13 +245,14 @@ io.on('connection', function (socket) {
         }).then(function () {
             // updateCurrentCanvas(canvas.link);
 
+
+
             Canvas.findOne({
                 where: {
                     link: canvas.link
                 }
             }).then(function (canvas) {
                 if (canvas) {
-
                     var content = JSON.parse(canvas.content);
                     // updateCurrentCanvas('');
                     // socket.leave('canvas:'+canvas.link);
@@ -325,6 +344,14 @@ io.on('connection', function (socket) {
                     }
                 }).then(function (canvas) {
                     if (canvas) {
+
+                        if (process.env.SLACK_CHANNEL) {
+                            if (canvas.content.length > 300) {
+                                bot.postMessageToChannel(process.env.SLACK_CHANNEL, 'Someone exported a big canvas');
+                            } else {
+                                bot.postMessageToChannel(process.env.SLACK_CHANNEL, 'Someone exported a canvas');
+                            }
+                        }
                         socket.emit('/canvas/pdf', { dataURI: 'data:application/pdf;base64,'+base64, name: canvas.name});
                         // fs.unlink(filename);
                     } else {
