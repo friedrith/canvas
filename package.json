@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server/server.js",
-    "postinstall": "gulp less"
+    "build": "gulp less"
   },
   "config": {
     "tmp": "./tmp",
