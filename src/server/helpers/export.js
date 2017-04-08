@@ -17,21 +17,20 @@ function valuePropositionCanvasToPdf (link, callback) {
     .then(function (instance) {
         pInstance = instance;
         return instance.createPage();
-    })
-    .then(function (page) {
+    }).then(function (page) {
         pPage = page;
-        // return pPage.property('zoomFactor', 0.1);
+        return pPage.property('zoomFactor', 0.1);
 
 //            return pPage.property('viewportSize', {width: 1200, height: 900 });
-//    }).then(function () {
+    }).then(function () {
 
         // page.zoomFactor = 0.2;
 
-                    return page.property('paperSize', {
+                    return pPage.property('paperSize', {
                         width: '50cm',
                         height: '35cm',
                         orientation: 'landscape',
-                        border: '1cm'
+                        border: '0.5cm'
                     });
     }).then(function () {
         return pPage

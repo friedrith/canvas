@@ -39,7 +39,7 @@ app.factory('user', function ($rootScope, $timeout, socket) {
         };
 
         canvas.export = function (callback) {
-            socket.emit('/canvas/export', canvas.link);
+            socket.emit('/canvas/export', canvas.public);
             waitingDownload = true;
         };
 

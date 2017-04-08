@@ -4,7 +4,7 @@
 <div footer></div>
 
 <div class="canvas-name-container" ng-if="canvas != null">
-    <span class="canvas-name" contenteditable inline ng-model="canvas.name"></span>
+    <span class="canvas-name" inline>{{canvas.name}}</span>
 </div>
 
 
@@ -18,6 +18,7 @@
                 <canvas-business-model ng-if="canvas.type == 'business-model'" ></canvas-business-model>
                 <canvas-value-proposition ng-if="canvas.type == 'value-proposition'" ng-show="canvas.target == 'all' || canvas.target == 'value-proposition'"></canvas-value-proposition>
                 <canvas-customer-segment ng-if="canvas.type == 'value-proposition'" ng-show="canvas.target == 'all' || canvas.target == 'customer-segment'"></canvas-customer-segment>
+
             </div>
         </div>
 </div>

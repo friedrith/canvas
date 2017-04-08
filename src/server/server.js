@@ -340,7 +340,7 @@ io.on('connection', function (socket) {
 
                 Canvas.findOne({
                     where: {
-                        link: link
+                        public: link
                     }
                 }).then(function (canvas) {
                     if (canvas) {
