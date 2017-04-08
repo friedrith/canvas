@@ -6,21 +6,24 @@
         icon="cube"
         canvas-name="value-proposition"
         block-name="product"
-        value="canvas.content.product"
+        ng-model="canvas.content.product"
+        ng-change="saveCanvas()"
         editable="editable"></canvas-block><div class="canvas-value-proposition-gain-creators-pain-relievers">
             <canvas-block
             title="Gain Creators"
             icon="line chart"
             canvas-name="value-proposition"
             block-name="gain-creators"
-            value="canvas.content.gaincreator"
+            ng-model="canvas.content.gaincreator"
+            ng-change="saveCanvas()"
             editable="editable" top></canvas-block>
             <canvas-block
             title="Pain Relievers"
             icon="first aid"
             canvas-name="value-proposition"
             block-name="pain-relievers"
-            value="canvas.content.painrelievers"
+            ng-model="canvas.content.painrelievers"
+            ng-change="saveCanvas()"
             editable="editable" top></canvas-block>
         </div>
     </div>

@@ -3,11 +3,14 @@ app.directive("canvasBlock", function(user) {
     restrict: "E",
     replace: true,
     transclude: true,
-    scope: { editable: '=', value: '=', canvasName: '@', blockName: '@', title: '@', icon: '@'},
+    require: "ngModel",
+    scope: { editable: '=', canvasName: '@', blockName: '@', title: '@', icon: '@'},
     templateUrl: '/app/components/canvas-block/canvas-block.html',
     link: function(scope, element, attrs, ngModel) {
 
         scope.show = false;
+
+        scope.value = '';
 
 
         scope.top = false;
@@ -21,6 +24,19 @@ app.directive("canvasBlock", function(user) {
                 scope.show = true;
             }
         };
+
+        scope.onChange = function () {
+          if (ngModel) {
+            ngModel.$setViewValue(scope.value);
+          }
+        };
+
+        if (ngModel) {
+            ngModel.$render = function() {
+                scope.value = ngModel.$viewValue;
+
+            };
+        }
     }
   };
 });

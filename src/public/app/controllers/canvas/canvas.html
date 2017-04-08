@@ -97,7 +97,7 @@
 </div>
 
 <div class="canvas-name-container" ng-if="canvas != null">
-    <span class="canvas-name" contenteditable inline ng-model="canvas.name"></span>
+    <span class="canvas-name" contenteditable inline ng-model="canvas.name" ng-change="saveCanvas()"></span>
 </div>
 
 
@@ -163,11 +163,11 @@
 
         <h3>Private link</h3>
         <div>Remember this link to edit the canvas:</div>
-        <a class="canvas-warning-link" href="http://{{hostname}}/{{canvas.link}}">http://{{hostname}}/{{canvas.link}}</a>
+        <a class="canvas-warning-link" onclick="window.open(this.href); return false;" href="http://{{hostname}}/{{canvas.link}}">http://{{hostname}}/{{canvas.link}}</a>
 
         <h3>Public link</h3>
         <div>Send this link to share a read-only version of the canvas:</div>
-        <a class="canvas-warning-link" href="http://{{hostname}}/public/{{canvas.public}}">http://{{hostname}}/public/{{canvas.public}}</a>
+        <a class="canvas-warning-link" onclick="window.open(this.href); return false;" href="http://{{hostname}}/public/{{canvas.public}}">http://{{hostname}}/public/{{canvas.public}}</a>
         <!-- <form class="ui form big" name="form" novalidate>
 
             <div class="ui input">

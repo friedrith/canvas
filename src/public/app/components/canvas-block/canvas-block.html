@@ -5,5 +5,5 @@
             <div class="canvas-text canvas-{{canvasName}}-{{blockName}}-text" btf-markdown="(value | mdNewLine)">
             </div>
         </div>
-        <modal-editor show="show" title="{{title}}" icon="{{icon}}" model="value"></modal-editor>
+        <modal-editor show="show" title="{{title}}" icon="{{icon}}" ng-model="value" ng-change="onChange()"></modal-editor>
     </div>

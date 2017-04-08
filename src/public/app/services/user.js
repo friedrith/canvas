@@ -20,18 +20,12 @@ app.factory('user', function ($rootScope, $timeout, socket) {
 
     function addFunctions (canvas) {
         console.log(canvas.type);
-        canvas.save = function () {
-            if (!canvasLocked) {
-                socket.emit('/canvas/update', {
-                    link: canvas.link,
-                    type: canvas.type,
-                    name: canvas.name,
-                    target: canvas.target,
-                    zoom: canvas.zoom,
-                    content : canvas.content
-                });
-            }
-        };
+        // canvas.save = function () {
+        //   console.log('save');
+        //     if (!canvasLocked) {
+        //
+        //     }
+        // };
 
         canvas.delete = function (callback) {
             socket.emit('/canvas/delete', canvas.link);
@@ -56,7 +50,7 @@ app.factory('user', function ($rootScope, $timeout, socket) {
 
     socket.on('/canvas/updated', function (data) {
         console.log('updated');
-        if (currentCanvas && currentCanvas.public == data.public) {
+        if (currentCanvas && currentCanvas.public === data.public) {
             canvasLocked = true;
             currentCanvas.content = data.content;
             currentCanvas.name = data.name;
@@ -180,6 +174,20 @@ app.factory('user', function ($rootScope, $timeout, socket) {
         },
         canvasLocked: function () {
             return canvasLocked;
+        },
+        saveCanvas: function () {
+          // console.log('saveCanvas');
+            if (currentCanvas) {
+              console.log('saveCanvas', currentCanvas.content);
+              socket.emit('/canvas/update', {
+                  link: currentCanvas.link,
+                  type: currentCanvas.type,
+                  name: currentCanvas.name,
+                  target: currentCanvas.target,
+                  zoom: currentCanvas.zoom,
+                  content : currentCanvas.content
+              });
+            }
         },
         getCanvas: function (link, callback) {
             var found = false;

@@ -20,14 +20,14 @@ app.controller('CanvasCtrl', function($scope, $location, $route, $window, $inter
         //
         // });
         if (data) {
-            console.log(data.name);
+            // console.log(data.name);
             $scope.canvas = data;
 
-            $scope.$watch(function () {
-                return $scope.canvas;
-            }, function () {
-                $scope.canvas.save();
-            }, true);
+            // $scope.$watch(function () {
+            //     return $scope.canvas;
+            // }, function () {
+            //     $scope.canvas.save();
+            // }, true);
 
             $scope.showLinks = false;
 
@@ -196,6 +196,11 @@ app.controller('CanvasCtrl', function($scope, $location, $route, $window, $inter
         } else if ($scope.stateLastChance == 'index') {
             window.location = '/';
         }
+    };
+
+    $scope.saveCanvas = function () {
+      // console.log('changeCanvas', scope.canvas);
+      user.saveCanvas();
     };
 
     $scope.hostname = window.location.host;

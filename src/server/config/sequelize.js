@@ -16,9 +16,8 @@ var options = {
     max: 5,
     min: 0,
     idle: 10000
-  }
-
-
+  },
+  logging: false
 };
 
 if ('sqlite' == process.env.DB_TYPE) {

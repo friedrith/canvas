@@ -9,9 +9,9 @@ const io = require('socket.io')(server);
 const fs = require('fs-extra');
 const path = require('path');
 const randomstring = require("randomstring");
-const passport = require('passport');
-const passportSocketIo = require('passport.socketio');
-const cookieParser = require('cookie-parser');
+// const passport = require('passport');
+// const passportSocketIo = require('passport.socketio');
+// const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 
@@ -57,19 +57,18 @@ server.listen(process.env.PORT, function () {
     console.log('listening on http://localhost:'+process.env.PORT);
 });
 
-var sessionOpts = {
-    secret: 'secret',
-    key: 'skey.sid',
-    resave: false,
-    saveUninitialized: false
-  };
+// var sessionOpts = {
+//     secret: 'secret',
+//     key: 'skey.sid',
+//     resave: false,
+//     saveUninitialized: false
+//   };
 
-
-app.use(session(sessionOpts));
+// app.use(session(sessionOpts));
 
 // Initialize Passport session
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // assign the swig engine to .html files
 app.engine('html', cons.swig);
@@ -91,23 +90,10 @@ app
       title: 'Consolidate.js'
     });
 });
-// .use('/file', express.static(folders.public))
-// .use('/file/node_modules', express.static(folders.node));
-
-/*
-io.use(passportSocketIo.authorize({
-  key: 'skey.sid',
-  secret: 'secret',
-  passport: passport,
-  cookieParser: cookieParser
-}));
-*/
 
 io.on('connection', function (socket) {
 
     var currentCanvas = null;
-
-
     function updateCurrentCanvas (link) {
         if (currentCanvas && link != currentCanvas) {
             socket.leave('canvas:'+currentCanvas);
@@ -115,45 +101,6 @@ io.on('connection', function (socket) {
         currentCanvas = link;
         socket.join('canvas:'+link);
     }
-
-    socket.on('/email/free', function (email) {
-        console.log('/email/free');
-        User.findOne({
-            where: {
-                email: email
-            }
-        }).then(function (err, user) {
-            console.log('then');
-            if (err) { socket.emit('/email/free/no'); }
-            if (!user) {
-                socket.emit('/email/free');
-            } else {
-                socket.emit('/email/free/no');
-            }
-        });
-    });
-
-    socket.on('/signup', function (data) {
-        console.log('signup', data);
-        if (data.email && data.password) {
-            passwordHelper.hash(data.password, function (err, hash, salt) {
-                User.create({
-                    email: data.email,
-                    password: hash,
-                    salt: salt
-                }).then(function (user) {
-                    // console.log('then');
-                    if (user) {
-                        socket.emit('/signup/success');
-                    } else {
-                        socket.emit('/signup/fail');
-                    }
-                });
-            });
-        } else {
-            socket.emit('/signup/fail');
-        }
-    });
 
     socket.on('/canvas/create', function (type) {
         if (canvasTypes.indexOf(type) < 0) {
@@ -164,7 +111,7 @@ io.on('connection', function (socket) {
         var link = randomstring.generate(12);
         var publicLink = randomstring.generate(12);
 
-        console.log(type);
+        // console.log(type);
         var content = '{}';
         if (type == 'value-proposition') {
             content = JSON.stringify({job: '', pains: '', gains: '', painrelievers: '', gaincreator: '', product: ''});
@@ -182,7 +129,7 @@ io.on('connection', function (socket) {
                     bot.postMessageToChannel(process.env.SLACK_CHANNEL, 'Someone created a new canvas');
                 }
 
-                updateCurrentCanvas(canvas.link);
+                updateCurrentCanvas(canvas.public);
                 socket.emit('/canvas/created', {
                     link: canvas.link,
                     name: canvas.name,
@@ -208,6 +155,8 @@ io.on('connection', function (socket) {
     socket.on('/canvas/update', function (canvas) {
 
         var content = {};
+
+        console.log(canvas.content);
 
         if (canvas.type == 'value-proposition') {
             content = {
@@ -256,7 +205,7 @@ io.on('connection', function (socket) {
                     var content = JSON.parse(canvas.content);
                     // updateCurrentCanvas('');
                     // socket.leave('canvas:'+canvas.link);
-                    socket.broadcast.to('canvas:'+canvas.link).emit('/canvas/updated', {
+                    socket.broadcast.to('canvas:'+canvas.public).emit('/canvas/updated', {
                     // io.in('canvas:'+canvas.link).emit('/canvas/updated', {
                         public: canvas.public,
                         name: canvas.name,
@@ -264,7 +213,7 @@ io.on('connection', function (socket) {
                         target: canvas.target,
                         zoom: canvas.zoom
                     });
-                    updateCurrentCanvas(canvas.link);
+                    updateCurrentCanvas(canvas.public);
                 }
 
             });
@@ -282,8 +231,8 @@ io.on('connection', function (socket) {
             if (canvas) {
 
                 var content = JSON.parse(canvas.content);
-                console.log(canvas.type);
-                updateCurrentCanvas(canvas.link);
+                // console.log(canvas.type);
+                updateCurrentCanvas(canvas.public);
 
                 socket.emit('/canvas/found', {
                     link: canvas.link,
@@ -307,9 +256,9 @@ io.on('connection', function (socket) {
                 public: link
             }
         }).then(function (canvas) {
-            console.log(canvas);
+            // console.log(canvas);
             if (canvas) {
-                updateCurrentCanvas(canvas.link);
+                updateCurrentCanvas(canvas.public);
 
                 var content = JSON.parse(canvas.content);
                 socket.emit('/canvas/public/found', {
@@ -331,7 +280,7 @@ io.on('connection', function (socket) {
         exportHelper.valuePropositionCanvasToPdf(link, function (filename) {
 
             fs.readFile(filename, function (err, data) {
-                console.log('fs.readfile');
+                // console.log('fs.readfile');
                 if (err) {
                     console.log(err);
                     return;

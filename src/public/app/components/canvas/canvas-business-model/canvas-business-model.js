@@ -6,7 +6,7 @@ app.directive("canvasBusinessModel", function(user) {
     templateUrl: '/app/components/canvas/canvas-business-model/canvas-business-model.html',
     link: function(scope, element, attrs, ngModel) {
 
-
+      
     }
   };
 });

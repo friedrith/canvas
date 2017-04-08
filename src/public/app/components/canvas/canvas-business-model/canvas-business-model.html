@@ -5,62 +5,71 @@
         icon="linkify"
         canvas-name="business-model"
         block-name="partners"
-        value="canvas.content.partners"
+        ng-model="canvas.content.partners"
+        ng-change="saveCanvas()"
         editable="editable" top></canvas-block><div class="canvas-business-model-activities-resources">
             <canvas-block
             title="Key Activities"
             icon="check circle"
             canvas-name="business-model"
             block-name="activities"
-            value="canvas.content.activities"
+            ng-model="canvas.content.activities"
+            ng-change="saveCanvas()"
             editable="editable" top></canvas-block>
             <canvas-block
             title="Key Resources"
             icon="industry"
             canvas-name="business-model"
             block-name="resources"
-            value="canvas.content.resources"
+            ng-model="canvas.content.resources"
+            ng-change="saveCanvas()"
             editable="editable" top></canvas-block>
         </div><canvas-block
         title="Value Proposition"
         icon="gift"
         canvas-name="business-model"
         block-name="value-proposition"
-        value="canvas.content.valueproposition"
+        ng-model="canvas.content.valueproposition"
+        ng-change="saveCanvas()"
         editable="editable" top></canvas-block><div class="canvas-business-model-relationships-channels">
             <canvas-block
             title="Customer Relationships"
             icon="heart"
             canvas-name="business-model"
             block-name="relationships"
-            value="canvas.content.relationships"
+            ng-model="canvas.content.relationships"
+            ng-change="saveCanvas()"
             editable="editable" top></canvas-block>
             <canvas-block
             title="Channels"
             icon="shipping"
             canvas-name="business-model"
             block-name="channels"
-            value="canvas.content.channels"
+            ng-model="canvas.content.channels"
+            ng-change="saveCanvas()"
             editable="editable" top></canvas-block>
         </div><canvas-block
         title="Customer Segments"
         icon="users"
         canvas-name="business-model"
         block-name="segments"
-        value="canvas.content.segments"
+        ng-model="canvas.content.segments"
+        ng-change="saveCanvas()"
         editable="editable" top></canvas-block>
         <canvas-block
         title="Cost Structure"
         icon="ticket"
         canvas-name="business-model"
         block-name="costs"
-        value="canvas.content.costs"
+        ng-model="canvas.content.costs"
+        ng-change="saveCanvas()"
         editable="editable" top></canvas-block><canvas-block
         title="Revenue Streams"
         icon="dollar"
         canvas-name="business-model"
         block-name="revenues"
-        value="canvas.content.revenues"
+        ng-model="canvas.content.revenues"
+        ng-change="saveCanvas()"
         editable="editable" top></canvas-block>
     </div>
 </div>

@@ -7,21 +7,24 @@
             icon="smile"
             canvas-name="customer-segment"
             block-name="gains"
-            value="canvas.content.gains"
+            ng-model="canvas.content.gains"
+            ng-change="saveCanvas()"
             editable="editable" top></canvas-block>
             <canvas-block
             title="Pains"
             icon="frown"
             canvas-name="customer-segment"
             block-name="pains"
-            value="canvas.content.pains"
+            ng-model="canvas.content.pains"
+            ng-change="saveCanvas()"
             editable="editable" top></canvas-block>
         </div><canvas-block
         title="Job"
         icon="list layout"
         canvas-name="customer-segment"
         block-name="job"
-        value="canvas.content.job"
+        ng-model="canvas.content.job"
+        ng-change="saveCanvas()"
         editable="editable"></canvas-block>
     </div>
 </div>
