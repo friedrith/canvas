@@ -32,7 +32,7 @@ var folders = {
     data: path.join(__dirname, '../../data')
 };
 
-const canvasTypes = [ 'value-proposition', 'business-model' ];
+const canvasTypes = [ 'value-proposition', 'business-model', 'startup-founder' ];
 
 if (process.env.SLACK_BOT_TOKEN) {
     var bot = new SlackBot({
@@ -117,7 +117,12 @@ io.on('connection', function (socket) {
             content = JSON.stringify({job: '', pains: '', gains: '', painrelievers: '', gaincreator: '', product: ''});
         } else if (type == 'business-model') {
             content = JSON.stringify({segments: '', relationships: '', channels: '', revenues: '', valueproposition: '', activities: '', resources: '', partners: '', costs: ''});
+        } else if (type == 'startup-founder') {
+            content = JSON.stringify({values: '', motivations: '', vision: '', missions: '', purpose: '', 'keysuccesscriteria': '', strategy: '', organisation: '', skills: '', means: '', benefits: '', commitments: ''});
         }
+
+        console.log('create', type, content);
+
         Canvas.create({
             link: link,
             public: publicLink,
@@ -178,6 +183,21 @@ io.on('connection', function (socket) {
                 resources: canvas.content.resources,
                 partners: canvas.content.partners,
                 costs: canvas.content.costs
+            };
+        } else if (canvas.type == 'startup-founder') {
+            content = {
+                values: canvas.content.values,
+                motivations: canvas.content.motivations,
+                vision: canvas.content.vision,
+                missions: canvas.content.missions,
+                purpose: canvas.content.purpose,
+                keysuccesscriteria: canvas.content.keysuccesscriteria,
+                strategy: canvas.content.strategy,
+                organisation: canvas.content.organisation,
+                skills: canvas.content.skills,
+                means: canvas.content.means,
+                benefits: canvas.content.benefits,
+                commitments: canvas.content.commitments
             };
         }
 

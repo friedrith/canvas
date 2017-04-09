@@ -14,6 +14,7 @@ app.controller('CanvasCtrl', function($scope, $location, $route, $window, $inter
     $scope.canvas = null;
     $scope.editable = true;
 
+    $scope.footerMore = '';
 
     user.getCanvas($routeParams.link, function (data) {
         // $scope.$apply (function () {
@@ -30,6 +31,10 @@ app.controller('CanvasCtrl', function($scope, $location, $route, $window, $inter
             // }, true);
 
             $scope.showLinks = false;
+
+            if ($scope.canvas.type === 'startup-founder') {
+              $scope.footerMore = 'by Cogiteo';
+            }
 
         } else {
             $scope.$apply(function () {
@@ -201,6 +206,10 @@ app.controller('CanvasCtrl', function($scope, $location, $route, $window, $inter
     $scope.saveCanvas = function () {
       // console.log('changeCanvas', scope.canvas);
       user.saveCanvas();
+    };
+
+    $scope.openStartupFounderCanvas = function () {
+      window.open('http://www.startupfoundercanvas.com');
     };
 
     $scope.hostname = window.location.host;

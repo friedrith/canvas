@@ -1,4 +1,4 @@
-<!-- <div menu-button></div> -->
+  <!-- <div menu-button></div> -->
 <div header ng-click="gotoIndex()"></div>
 
 <div footer></div>
@@ -91,6 +91,12 @@
         </button>
     </div>
 
+    <div class="toolbar-submenu" ng-if="canvas && canvas.type === 'startup-founder'">
+        <button class="ui button secondary icon large toolbar-button" ng-click="openStartupFounderCanvas()">
+            <i class="ui icon info"></i>
+        </button>
+    </div>
+
     <!-- <button class="ui button secondary icon large menu-button" ng-click="enlarge()">
         <i class="ui icon maximize"></i>
     </button> -->
@@ -147,6 +153,7 @@
                 <canvas-business-model ng-if="canvas.type == 'business-model'" ></canvas-business-model>
                 <canvas-value-proposition ng-if="canvas.type == 'value-proposition'" ng-show="canvas.target == 'all' || canvas.target == 'value-proposition'"></canvas-value-proposition>
                 <canvas-customer-segment ng-if="canvas.type == 'value-proposition'" ng-show="canvas.target == 'all' || canvas.target == 'customer-segment'"></canvas-customer-segment>
+                <canvas-startup-founder ng-if="canvas.type == 'startup-founder'" ng-show="canvas.target == 'all' || canvas.target == 'startup-founder'"></canvas-startup-founder>
             </div>
         </div>
 </div>

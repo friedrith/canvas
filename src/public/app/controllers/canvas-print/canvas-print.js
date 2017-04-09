@@ -20,6 +20,10 @@ app.controller('CanvasPrintCtrl', function($scope, $location, $timeout, $routePa
             console.log(data.name);
             $scope.canvas = data;
 
+            if (data.type === 'startup-founder') {
+              $scope.hostname = 'www.startupfoundercanvas.com';
+            }
+
         } else {
             $scope.$apply(function () {
                 $scope.notFound = true;

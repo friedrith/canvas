@@ -169,6 +169,7 @@ app.factory('user', function ($rootScope, $timeout, socket) {
             return logged;
         },
         createCanvas: function (type, callback) {
+          console.log('createCanvas');
             socket.emit('/canvas/create', type);
             canvasCreatedCallback = callback;
         },

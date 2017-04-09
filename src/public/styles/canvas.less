@@ -7,7 +7,7 @@
         right: 0;
         bottom: 0;
         background: white;
-        // padding-top: 
+        // padding-top:
 
         // zoom: 0.3;
     }
@@ -175,6 +175,96 @@
         }
 
     }
+
+    &-startup-founder {
+      position: relative;
+      z-index: 100;
+      box-sizing: content-box;
+      overflow: hidden;
+      border: 4px black solid;
+      width: 1600px;
+      height: 860px;
+      background: white;
+      margin: auto;
+      text-align: left;
+
+      &-why, &-how {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 800px;
+        padding: 10px;
+        height: 60px;
+        border-bottom: 2px solid black;
+        font-size: 2em;
+      }
+
+      &-why {
+        border-right: 2px solid black;
+      }
+
+      &-values, &-motivations, &-vision, &-missions, &-purpose, &-key-success-criteria, &-strategy, &-organisation, &-skills, &-means, &-benefits, &-commitments {
+          &-content {
+              display: inline-block;
+              vertical-align: top;
+              width: 300px;
+              height: 100%;
+              padding: 10px 0px;
+              text-align: left;
+          }
+      }
+
+      &-benefits, &-commitments {
+          &-content {
+              width: 780px;
+          }
+      }
+
+      &-values-motivations, &-vision-missions, &-purpose-key-success-criteria, &-strategy-organisation, &-skills-means {
+          box-sizing: border-box;
+          display: inline-block;
+          width: 320px;
+          height: 560px;
+          vertical-align: top;
+      }
+
+      &-purpose-key-success-criteria {
+        border: 2px solid black;
+      }
+
+      &-values, &-motivations, &-vision, &-missions, &-purpose, &-key-success-criteria, &-strategy, &-organisation {
+        height: 50%;
+        width: 100%;
+        display: block;
+        border-right: 2px solid black;
+        border-bottom: 2px solid black;
+        text-align: center;
+      }
+
+      &-skills, &-means {
+        height: 50%;
+        width: 100%;
+        display: block;
+        border-bottom: 2px solid black;
+        text-align: center;
+      }
+
+      &-benefits, &-commitments {
+          box-sizing: border-box;
+          display: inline-block;
+          width: 50%;
+          height: 240px;
+          vertical-align: top;
+          text-align: center;
+      }
+
+      &-benefits {
+        border-right: 2px solid black;
+      }
+
+
+    }
+
+
 
 
     &-customer-segment {
