@@ -16,13 +16,14 @@ app.controller('GalleryCtrl', function($scope, $location, $window, $route, user)
             type: "business-model",
             label: "Business is Business !",
             img: "business-model-canvas-3.png"
-        },
-        {
-            name: "Startup Founder Canvas",
-            type: "startup-founder",
-            label: "By Cogiteo",
-            img: "business-model-canvas-3.png"
         }
+        // },
+        // {
+        //     name: "Startup Founder Canvas",
+        //     type: "startup-founder",
+        //     label: "By Cogiteo",
+        //     img: "business-model-canvas-3.png"
+        // }
     ];
 
     $scope.chooseCanvas = function (type) {
